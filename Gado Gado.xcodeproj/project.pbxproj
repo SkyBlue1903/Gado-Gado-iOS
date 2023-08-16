@@ -8,17 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		578838BD2A8C7C0C006A1586 /* Gado_GadoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */; };
-		578838BF2A8C7C0C006A1586 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838BE2A8C7C0C006A1586 /* ContentView.swift */; };
+		578838BF2A8C7C0C006A1586 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838BE2A8C7C0C006A1586 /* TodayView.swift */; };
 		578838C12A8C7C0E006A1586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578838C02A8C7C0E006A1586 /* Assets.xcassets */; };
 		578838C42A8C7C0E006A1586 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578838C32A8C7C0E006A1586 /* Preview Assets.xcassets */; };
+		578838CF2A8CA43B006A1586 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 578838CE2A8CA43B006A1586 /* FirebaseAnalytics */; };
+		578838D12A8CA43B006A1586 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 578838D02A8CA43B006A1586 /* FirebaseAnalyticsSwift */; };
+		578838D32A8CA43B006A1586 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 578838D22A8CA43B006A1586 /* FirebaseAuth */; };
+		578838D52A8CA43B006A1586 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 578838D42A8CA43B006A1586 /* FirebaseFirestore */; };
+		578838D72A8CA43B006A1586 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 578838D62A8CA43B006A1586 /* FirebaseFirestoreSwift */; };
+		578838D92A8CD997006A1586 /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838D82A8CD997006A1586 /* ExperienceView.swift */; };
+		578838DB2A8CD9AB006A1586 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DA2A8CD9AB006A1586 /* BrowseView.swift */; };
+		578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DC2A8CD9BE006A1586 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		578838B92A8C7C0C006A1586 /* Gado Gado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gado Gado.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gado_GadoApp.swift; sourceTree = "<group>"; };
-		578838BE2A8C7C0C006A1586 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		578838BE2A8C7C0C006A1586 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		578838C02A8C7C0E006A1586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		578838C32A8C7C0E006A1586 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		578838D82A8CD997006A1586 /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
+		578838DA2A8CD9AB006A1586 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
+		578838DC2A8CD9BE006A1586 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +37,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578838D72A8CA43B006A1586 /* FirebaseFirestoreSwift in Frameworks */,
+				578838D12A8CA43B006A1586 /* FirebaseAnalyticsSwift in Frameworks */,
+				578838D52A8CA43B006A1586 /* FirebaseFirestore in Frameworks */,
+				578838D32A8CA43B006A1586 /* FirebaseAuth in Frameworks */,
+				578838CF2A8CA43B006A1586 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,9 +68,12 @@
 			isa = PBXGroup;
 			children = (
 				578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */,
-				578838BE2A8C7C0C006A1586 /* ContentView.swift */,
+				578838DA2A8CD9AB006A1586 /* BrowseView.swift */,
+				578838BE2A8C7C0C006A1586 /* TodayView.swift */,
 				578838C02A8C7C0E006A1586 /* Assets.xcassets */,
 				578838C22A8C7C0E006A1586 /* Preview Content */,
+				578838D82A8CD997006A1586 /* ExperienceView.swift */,
+				578838DC2A8CD9BE006A1586 /* ProfileView.swift */,
 			);
 			path = "Gado Gado";
 			sourceTree = "<group>";
@@ -83,6 +102,13 @@
 			dependencies = (
 			);
 			name = "Gado Gado";
+			packageProductDependencies = (
+				578838CE2A8CA43B006A1586 /* FirebaseAnalytics */,
+				578838D02A8CA43B006A1586 /* FirebaseAnalyticsSwift */,
+				578838D22A8CA43B006A1586 /* FirebaseAuth */,
+				578838D42A8CA43B006A1586 /* FirebaseFirestore */,
+				578838D62A8CA43B006A1586 /* FirebaseFirestoreSwift */,
+			);
 			productName = "Gado Gado";
 			productReference = 578838B92A8C7C0C006A1586 /* Gado Gado.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +137,9 @@
 				Base,
 			);
 			mainGroup = 578838B02A8C7C0C006A1586;
+			packageReferences = (
+				578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 578838BA2A8C7C0C006A1586 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,7 +166,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				578838BF2A8C7C0C006A1586 /* ContentView.swift in Sources */,
+				578838DB2A8CD9AB006A1586 /* BrowseView.swift in Sources */,
+				578838D92A8CD997006A1586 /* ExperienceView.swift in Sources */,
+				578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */,
+				578838BF2A8C7C0C006A1586 /* TodayView.swift in Sources */,
 				578838BD2A8C7C0C006A1586 /* Gado_GadoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +307,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,6 +337,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -339,6 +373,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		578838CE2A8CA43B006A1586 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		578838D02A8CA43B006A1586 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		578838D22A8CA43B006A1586 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		578838D42A8CA43B006A1586 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		578838D62A8CA43B006A1586 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 578838B12A8C7C0C006A1586 /* Project object */;
 }

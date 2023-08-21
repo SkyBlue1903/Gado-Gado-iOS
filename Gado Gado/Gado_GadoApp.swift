@@ -7,30 +7,41 @@
 
 import SwiftUI
 
+
 @main
 struct Gado_GadoApp: App {
+  
   @State private var isLoggedIn = false
+  @State private var tabSelection: RootTab = .today
+  
   var body: some Scene {
     WindowGroup {
-      TabView {
-        TodayView()
-          .tabItem {
-            Label("Today", systemImage: "doc.text.image")
-          }
-        if isLoggedIn {
-          ExperienceView()
+      NavigationView {
+        TabView(selection: $tabSelection) {
+          TodayView()
             .tabItem {
-              Label("Experience", systemImage: "dpad")
+              Label("Today", systemImage: "doc.text.image")
             }
+            .tag(RootTab.today)
+          if isLoggedIn {
+            ExperienceView()
+              .tabItem {
+                Label("Experience", systemImage: "dpad")
+              }
+              .tag(RootTab.experience)
+          }
+          DiscoverView()
+            .tabItem {
+              Label("Discover", systemImage: "safari")
+            }
+            .tag(RootTab.discover)
+          ProfileView()
+            .tabItem {
+              Label("Profile", systemImage: "person")
+            }
+            .tag(RootTab.profile)
         }
-        BrowseView()
-          .tabItem {
-            Label("Browse", systemImage: "square.grid.2x2")
-          }
-        ProfileView()
-          .tabItem {
-            Label("Profile", systemImage: "person")
-          }
+        .accentColor(Color(hex: "#7DCE13"))
       }
     }
   }

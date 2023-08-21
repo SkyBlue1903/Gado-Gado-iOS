@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5720C1E72A9311A400498B8F /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720C1E62A9311A400498B8F /* Enum.swift */; };
+		5720C1EA2A93190300498B8F /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720C1E92A93190300498B8F /* TextFieldStyle.swift */; };
+		5735EED32A8CF6FC00E3BB0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5735EED22A8CF6FC00E3BB0C /* Extensions.swift */; };
+		577FB5A02A8E54CF009CA6C1 /* DiscoverCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */; };
 		578838BD2A8C7C0C006A1586 /* Gado_GadoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */; };
 		578838BF2A8C7C0C006A1586 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838BE2A8C7C0C006A1586 /* TodayView.swift */; };
 		578838C12A8C7C0E006A1586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578838C02A8C7C0E006A1586 /* Assets.xcassets */; };
@@ -17,19 +21,30 @@
 		578838D52A8CA43B006A1586 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 578838D42A8CA43B006A1586 /* FirebaseFirestore */; };
 		578838D72A8CA43B006A1586 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 578838D62A8CA43B006A1586 /* FirebaseFirestoreSwift */; };
 		578838D92A8CD997006A1586 /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838D82A8CD997006A1586 /* ExperienceView.swift */; };
-		578838DB2A8CD9AB006A1586 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DA2A8CD9AB006A1586 /* BrowseView.swift */; };
+		578838DB2A8CD9AB006A1586 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DA2A8CD9AB006A1586 /* DiscoverView.swift */; };
 		578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DC2A8CD9BE006A1586 /* ProfileView.swift */; };
+		57B0BEBB2A8E02F900F14629 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 57B0BEBA2A8E02F900F14629 /* SwiftlySearch */; };
+		57DE41FE2A9240B9001344EA /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 57DE41FD2A9240B9001344EA /* BottomSheet */; };
+		57DE42002A926146001344EA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE41FF2A926146001344EA /* ImagePicker.swift */; };
+		57FC8F6F2A90CB38003AB65E /* TestingGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC8F6E2A90CB38003AB65E /* TestingGrid.swift */; };
+		57FF051B2A9210D200F1A6CD /* VisualEffectView in Frameworks */ = {isa = PBXBuildFile; productRef = 57FF051A2A9210D200F1A6CD /* VisualEffectView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5720C1E62A9311A400498B8F /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		5720C1E92A93190300498B8F /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
+		5735EED22A8CF6FC00E3BB0C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCarouselView.swift; sourceTree = "<group>"; };
 		578838B92A8C7C0C006A1586 /* Gado Gado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gado Gado.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gado_GadoApp.swift; sourceTree = "<group>"; };
 		578838BE2A8C7C0C006A1586 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		578838C02A8C7C0E006A1586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		578838C32A8C7C0E006A1586 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		578838D82A8CD997006A1586 /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
-		578838DA2A8CD9AB006A1586 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
+		578838DA2A8CD9AB006A1586 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		578838DC2A8CD9BE006A1586 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		57DE41FF2A926146001344EA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		57FC8F6E2A90CB38003AB65E /* TestingGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,8 +53,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				578838D72A8CA43B006A1586 /* FirebaseFirestoreSwift in Frameworks */,
+				57DE41FE2A9240B9001344EA /* BottomSheet in Frameworks */,
 				578838D12A8CA43B006A1586 /* FirebaseAnalyticsSwift in Frameworks */,
+				57FF051B2A9210D200F1A6CD /* VisualEffectView in Frameworks */,
 				578838D52A8CA43B006A1586 /* FirebaseFirestore in Frameworks */,
+				57B0BEBB2A8E02F900F14629 /* SwiftlySearch in Frameworks */,
 				578838D32A8CA43B006A1586 /* FirebaseAuth in Frameworks */,
 				578838CF2A8CA43B006A1586 /* FirebaseAnalytics in Frameworks */,
 			);
@@ -48,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5720C1E82A9318ED00498B8F /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				5720C1E92A93190300498B8F /* TextFieldStyle.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
 		578838B02A8C7C0C006A1586 = {
 			isa = PBXGroup;
 			children = (
@@ -67,13 +93,19 @@
 		578838BB2A8C7C0C006A1586 /* Gado Gado */ = {
 			isa = PBXGroup;
 			children = (
+				5720C1E82A9318ED00498B8F /* Reusable */,
 				578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */,
-				578838DA2A8CD9AB006A1586 /* BrowseView.swift */,
+				578838DA2A8CD9AB006A1586 /* DiscoverView.swift */,
 				578838BE2A8C7C0C006A1586 /* TodayView.swift */,
 				578838C02A8C7C0E006A1586 /* Assets.xcassets */,
 				578838C22A8C7C0E006A1586 /* Preview Content */,
 				578838D82A8CD997006A1586 /* ExperienceView.swift */,
 				578838DC2A8CD9BE006A1586 /* ProfileView.swift */,
+				5735EED22A8CF6FC00E3BB0C /* Extensions.swift */,
+				577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */,
+				57FC8F6E2A90CB38003AB65E /* TestingGrid.swift */,
+				57DE41FF2A926146001344EA /* ImagePicker.swift */,
+				5720C1E62A9311A400498B8F /* Enum.swift */,
 			);
 			path = "Gado Gado";
 			sourceTree = "<group>";
@@ -108,6 +140,9 @@
 				578838D22A8CA43B006A1586 /* FirebaseAuth */,
 				578838D42A8CA43B006A1586 /* FirebaseFirestore */,
 				578838D62A8CA43B006A1586 /* FirebaseFirestoreSwift */,
+				57B0BEBA2A8E02F900F14629 /* SwiftlySearch */,
+				57FF051A2A9210D200F1A6CD /* VisualEffectView */,
+				57DE41FD2A9240B9001344EA /* BottomSheet */,
 			);
 			productName = "Gado Gado";
 			productReference = 578838B92A8C7C0C006A1586 /* Gado Gado.app */;
@@ -139,6 +174,9 @@
 			mainGroup = 578838B02A8C7C0C006A1586;
 			packageReferences = (
 				578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				57B0BEB92A8E02F900F14629 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
+				57FF05192A9210D200F1A6CD /* XCRemoteSwiftPackageReference "VisualEffectView" */,
+				57DE41FC2A9240B9001344EA /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = 578838BA2A8C7C0C006A1586 /* Products */;
 			projectDirPath = "";
@@ -166,10 +204,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				578838DB2A8CD9AB006A1586 /* BrowseView.swift in Sources */,
+				57FC8F6F2A90CB38003AB65E /* TestingGrid.swift in Sources */,
+				5720C1EA2A93190300498B8F /* TextFieldStyle.swift in Sources */,
+				578838DB2A8CD9AB006A1586 /* DiscoverView.swift in Sources */,
+				577FB5A02A8E54CF009CA6C1 /* DiscoverCarouselView.swift in Sources */,
+				57DE42002A926146001344EA /* ImagePicker.swift in Sources */,
+				5735EED32A8CF6FC00E3BB0C /* Extensions.swift in Sources */,
 				578838D92A8CD997006A1586 /* ExperienceView.swift in Sources */,
 				578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */,
 				578838BF2A8C7C0C006A1586 /* TodayView.swift in Sources */,
+				5720C1E72A9311A400498B8F /* Enum.swift in Sources */,
 				578838BD2A8C7C0C006A1586 /* Gado_GadoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,9 +359,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anugrahangga.Gado-Gado";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -345,9 +392,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anugrahangga.Gado-Gado";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -383,6 +433,30 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		57B0BEB92A8E02F900F14629 /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thislooksfun/SwiftlySearch.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		57DE41FC2A9240B9001344EA /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucaszischka/BottomSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		57FF05192A9210D200F1A6CD /* XCRemoteSwiftPackageReference "VisualEffectView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/efremidze/VisualEffectView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -410,6 +484,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		57B0BEBA2A8E02F900F14629 /* SwiftlySearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57B0BEB92A8E02F900F14629 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
+			productName = SwiftlySearch;
+		};
+		57DE41FD2A9240B9001344EA /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57DE41FC2A9240B9001344EA /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
+		};
+		57FF051A2A9210D200F1A6CD /* VisualEffectView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57FF05192A9210D200F1A6CD /* XCRemoteSwiftPackageReference "VisualEffectView" */;
+			productName = VisualEffectView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

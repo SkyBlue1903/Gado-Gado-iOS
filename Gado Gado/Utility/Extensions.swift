@@ -39,6 +39,10 @@ extension Color {
     switch colorPalette {
     case .darkDefaultBg:
       self = Color(hex: "202020")
+    case .primaryApp:
+      self = Color(hex: "7DCE13")
+    case .secondaryApp:
+      self = Color(hex: "00000") // MARK: Brown color needs to fix soon
     }
   }
 }

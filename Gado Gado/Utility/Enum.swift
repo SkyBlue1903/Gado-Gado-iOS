@@ -12,6 +12,10 @@ enum RootTab {
 }
 
 enum ColorPalette {
+  case primaryApp
+  /// A primary color of app
+  case secondaryApp
+  /// A secondary color of app
   case darkDefaultBg
 }
 

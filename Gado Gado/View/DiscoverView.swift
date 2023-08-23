@@ -47,7 +47,7 @@ struct DiscoverView: View {
                 Text("HTML 5")
                   .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
                 Spacer()
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: GameDetailView()) {
                   Text("See All")
                     .font(.body)
                 }
@@ -55,7 +55,7 @@ struct DiscoverView: View {
               .frame(maxWidth: .infinity, alignment: .leading)
               .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
               ForEach(1...3, id: \.self) { each in
-                NavigationLink(destination: Text("Hii Iam inside")) {
+                NavigationLink(destination: GameDetailView()) {
                   HStack {
                     Image("sample-header")
                       .resizable()
@@ -86,7 +86,7 @@ struct DiscoverView: View {
                 Text("HTML 5")
                   .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
                 Spacer()
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: GameDetailView()) {
                   Text("See All")
                     .font(.body)
                 }
@@ -94,7 +94,7 @@ struct DiscoverView: View {
               .frame(maxWidth: .infinity, alignment: .leading)
               .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
               ForEach(1...3, id: \.self) { each in
-                NavigationLink(destination: Text("Hii Iam inside")) {
+                NavigationLink(destination: GameDetailView()) {
                   HStack {
                     Image("sample-header")
                       .resizable()
@@ -143,9 +143,6 @@ struct DiscoverView: View {
             let positionWithinRange = self.scrollPosition.y - maxScrollPosition
             opacityLevel = Double(positionWithinRange / opacityRange)
           }
-        }
-        .onChange(of: self.scrollPosition) { newValue in
-          
         }
       }
       .coordinateSpace(name: "scroll")

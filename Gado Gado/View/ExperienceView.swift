@@ -19,7 +19,7 @@ struct ExperienceView: View {
       GeometryReader { geometry in
         ScrollView(.vertical) {
           ForEach(1..<10, id: \.self) { each in
-            NavigationLink(destination: EmptyView()) {
+            NavigationLink(destination: GameDetailView()) {
               HStack(spacing: 16.0) {
                 Image("sample-header")
                   .resizable()
@@ -28,7 +28,7 @@ struct ExperienceView: View {
                   .clipped()
                 VStack() {
                   Group {
-                    Text("Cities Skylines ")
+                    Text("Cities Skylines")
                       .font(.headline)
                       .lineLimit(2)
                       .multilineTextAlignment(.leading)
@@ -74,6 +74,7 @@ struct ExperienceView: View {
           }
         }
       }
+      
       .bottomSheet(bottomSheetPosition: self.$bottomSheetPosition, switchablePositions: [.relativeTop(0.3), .relativeTop(0.6), .relativeTop(0.85)], title: "Add Experience") {
         ///** CONTENT HERE
         AddExperienceView()

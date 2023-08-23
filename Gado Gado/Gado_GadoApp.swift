@@ -11,7 +11,7 @@ import SwiftUI
 @main
 struct Gado_GadoApp: App {
   
-  @State private var isLoggedIn = false
+  @State private var isLoggedIn = true
   @State private var tabSelection: RootTab = .today
   
   var body: some Scene {
@@ -41,8 +41,8 @@ struct Gado_GadoApp: App {
             }
             .tag(RootTab.profile)
         }
-        .accentColor(Color(hex: "#7DCE13"))
       }
+      .accentColor(Color(.primaryApp))
     }
   }
 }

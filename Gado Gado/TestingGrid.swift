@@ -1,87 +1,57 @@
-import SwiftUI
-
-struct ContentView: View {
-  var body: some View {
-    TabView {
-      //Tab  1 will have a light status bar
-      Color.black
-        .edgesIgnoringSafeArea(.all)
-        .overlay(Text("Light Status Bar").foregroundColor(.white))
-        .statusBarStyle(.lightContent) //set status bar style here
-        .tabItem { Text("Tab 1") }
-      
-      //Tab 2 will have a dark status bar
-      Color.white
-        .edgesIgnoringSafeArea(.all)
-        .overlay(Text("Dark Status Bar"))
-        .statusBarStyle(.darkContent) //set status bar style here
-        .tabItem { Text("Tab 2") }
-    }
-  }
-}
-
-
-struct Cont_Previews: PreviewProvider {
-  static var previews: some View {
-    NavigationView {
-      ContentView()
-    }
-  }
-}
-
-class HostingController<Content: View>: UIHostingController<Content> {
-  override var preferredStatusBarStyle: UIStatusBarStyle {
-    return UIApplication.statusBarStyle
-  }
-}
-
-///By wrapping views in a RootView, they will become the app's main / primary view. This will enable setting the statusBarStyle.
-struct RootView<Content: View> : View {
-  var content: Content
-  
-  init(@ViewBuilder content: () -> (Content)) {
-    self.content = content()
-  }
-  
-  var body:some View {
-    EmptyView()
-      .onAppear {
-        UIApplication.shared.setHostingController(rootView: AnyView(content))
-      }
-  }
-}
-
-extension View {
-  ///Sets the status bar style color for this view.
-  func statusBarStyle(_ style: UIStatusBarStyle) -> some View {
-    UIApplication.statusBarStyleHierarchy.append(style)
-    //Once this view appears, set the style to the new style. Once it disappears, set it to the previous style.
-    return self.onAppear {
-      UIApplication.setStatusBarStyle(style)
-    }.onDisappear {
-      guard UIApplication.statusBarStyleHierarchy.count > 1 else { return }
-      let style = UIApplication.statusBarStyleHierarchy[UIApplication.statusBarStyleHierarchy.count - 1]
-      UIApplication.statusBarStyleHierarchy.removeLast()
-      UIApplication.setStatusBarStyle(style)
-    }
-  }
-}
-
-extension UIApplication {
-  static var hostingController: HostingController<AnyView>? = nil
-  
-  static var statusBarStyleHierarchy: [UIStatusBarStyle] = []
-  static var statusBarStyle: UIStatusBarStyle = .darkContent
-  
-  ///Sets the App to start at rootView
-  func setHostingController(rootView: AnyView) {
-    let hostingController = HostingController(rootView: AnyView(rootView))
-    windows.first?.rootViewController = hostingController
-    UIApplication.hostingController = hostingController
-  }
-  
-  static func setStatusBarStyle(_ style: UIStatusBarStyle) {
-    statusBarStyle = style
-    hostingController?.setNeedsStatusBarAppearanceUpdate()
-  }
-}
+//var body: some View {
+//  GeometryReader { geometry in
+//    VisualEffect(colorTint: colorScheme == .dark ? .black : .white, colorTintAlpha: 0.6, blurRadius: 18, scale: 1)
+//      .frame(height: statusBarHeight)
+//      .offset(y: min(-statusBarHeight, 0))
+//      .zIndex(1)
+//    ScrollView(.vertical) {
+//      headerParallax
+//      VStack(alignment: .leading, spacing: 25) {
+//        VStack(alignment: .leading, spacing: 5) {
+//          Text("Overview")
+//            .font(.system(size: UIFont.preferredFont(forTextStyle: .title3).pointSize, weight: .bold))
+//          Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+//        }
+//        VStack(alignment: .leading, spacing: 5) {
+//          Text("Information")
+//            .font(.system(size: UIFont.preferredFont(forTextStyle: .title3).pointSize, weight: .bold))
+//          Divider()
+//          Group {
+//            DisclosureGroup("Developer") {
+//              Text("Long terms and conditions here long terms and conditions here long terms and conditions here long terms and conditions here long terms and conditions here long terms and conditions here.")
+//            }
+//            Divider()
+//            DisclosureGroup("Genre") {
+//              Text("Long terms and conditions here long terms and conditions here long terms and conditions here long terms and conditions here long terms and conditions here long terms and conditions here.")
+//            }
+//            Divider()
+//            DisclosureGroup("Engine") {
+//              Text("Long terms and conditions here long terms and conditions here long terms and conditions here long terms and conditions here long terms and conditions here long terms and conditions here.")
+//            }
+//            Divider()
+//            Button {
+//
+//            } label: {
+//              HStack {
+//                Text("Developer Website")
+//                  .padding(.vertical, 6)
+//                Spacer()
+//                Image(systemName: "safari")
+//              }
+//              .foregroundColor(Color.accentColor)
+//            }
+//            Divider()
+//          }
+//          .foregroundColor(Color.black)
+//        }
+//      }
+//      .frame(maxWidth: .infinity, alignment: .leading)
+//      .padding(.top, getRect().height * 0.4)
+//      .padding(.horizontal, 16)
+//      .navigationBarHidden(true)
+//      .onAppear {
+//        statusBarHeight = UIApplication.shared.windows.first!.safeAreaInsets.top
+//      }
+//    }
+//  }
+//}

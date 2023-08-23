@@ -25,7 +25,7 @@ struct TodayView: View {
 //        .foregroundColor(colorScheme == .dark ? .black : .white)
 //      NavigationView {
         ScrollView(.vertical) {
-          VStack(alignment: .leading, spacing: 5) {
+          VStack(alignment: .leading, spacing: 0) {
             Text(currentDate.uppercased())
               .font(.footnote)
               .foregroundColor(.gray)
@@ -39,7 +39,7 @@ struct TodayView: View {
           .padding(.top, 20)
           
           ForEach(1..<10, id: \.self) { each in
-            NavigationLink(destination: EmptyView()) {
+            NavigationLink(destination: GameDetailView()) {
               VStack(alignment: .leading, spacing: 16.0) {
                 Image("sample-header")
                   .resizable()

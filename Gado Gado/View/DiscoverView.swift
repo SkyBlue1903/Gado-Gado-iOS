@@ -19,14 +19,12 @@ struct DiscoverView: View {
   @State private var showDetail: Bool = false
   
   var body: some View {
-    //    NavigationView {
     GeometryReader { geometry in
       VisualEffect(colorTint: colorScheme == .dark ? .black : .white, colorTintAlpha: 0.6, blurRadius: 18, scale: 1)
         .frame(height: statusBarHeight)
         .offset(y: min(-statusBarHeight, 0))
         .zIndex(10)
         .opacity(opacityLevel)
-//        .background(.thickMaterial)
       ScrollView {
         VStack(spacing: 0) {
           ZStack {
@@ -39,7 +37,6 @@ struct DiscoverView: View {
               .frame(maxWidth: getRect().width, alignment: .leading)
               .frame(height: getRect().height * 0.325, alignment: .top) // MARK: Needs responsive for smaller iPhones
           }
-          
           Group {
             //// Add Category here (by VStack)
             VStack {

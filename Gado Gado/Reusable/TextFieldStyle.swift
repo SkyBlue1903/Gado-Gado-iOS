@@ -17,6 +17,21 @@ struct TextFieldStyle: ViewModifier {
   }
 }
 
+struct CustomButtonStyle: View {
+  
+  var title: String?
+  var color: Color?
+  
+  var body: some View {
+    HStack {
+      Text("\(title ?? "")")
+        .foregroundColor(color ?? .blue)
+      Spacer()
+    }
+    .frame(height: 45)
+  }
+}
+
 // ISHIDDEN STRUCT IS HERE
 
 struct HiddenModifier: ViewModifier {

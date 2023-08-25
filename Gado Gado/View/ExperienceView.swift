@@ -161,7 +161,7 @@ struct AddExperienceView: View {
         Text("Game Detail".uppercased())
           .font(.caption)
 //          .padding(.top, 15)
-          .foregroundColor(Color.gray)
+          .foregroundColor(Color(hex: "727272"))
         TextField("Game title", text: $gameTitle)
           .modifier(TextFieldStyle())
         TextField("Developer", text: $gameDeveloper)
@@ -172,7 +172,7 @@ struct AddExperienceView: View {
           .modifier(TextFieldStyle())
         Text("Created at: \(currentDateAndTime)")
           .font(.caption)
-          .foregroundColor(Color.gray)
+          .foregroundColor(Color(hex: "727272"))
           .frame(maxWidth: .infinity, alignment: .leading)
         //            }
       }

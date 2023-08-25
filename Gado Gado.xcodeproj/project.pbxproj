@@ -10,7 +10,6 @@
 		5720C1E72A9311A400498B8F /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720C1E62A9311A400498B8F /* Enum.swift */; };
 		5720C1EA2A93190300498B8F /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720C1E92A93190300498B8F /* TextFieldStyle.swift */; };
 		5735EED32A8CF6FC00E3BB0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5735EED22A8CF6FC00E3BB0C /* Extensions.swift */; };
-		574269B62A94378F00752C81 /* Testing2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574269B52A94378F00752C81 /* Testing2.swift */; };
 		574269B82A94659600752C81 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574269B72A94659600752C81 /* GameDetailView.swift */; };
 		577FB5A02A8E54CF009CA6C1 /* DiscoverCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */; };
 		578838BD2A8C7C0C006A1586 /* Gado_GadoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */; };
@@ -28,7 +27,6 @@
 		57B0BEBB2A8E02F900F14629 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 57B0BEBA2A8E02F900F14629 /* SwiftlySearch */; };
 		57DE41FE2A9240B9001344EA /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 57DE41FD2A9240B9001344EA /* BottomSheet */; };
 		57DE42002A926146001344EA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE41FF2A926146001344EA /* ImagePicker.swift */; };
-		57FC8F6F2A90CB38003AB65E /* TestingGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FC8F6E2A90CB38003AB65E /* TestingGrid.swift */; };
 		57FF051B2A9210D200F1A6CD /* VisualEffectView in Frameworks */ = {isa = PBXBuildFile; productRef = 57FF051A2A9210D200F1A6CD /* VisualEffectView */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +34,6 @@
 		5720C1E62A9311A400498B8F /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		5720C1E92A93190300498B8F /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
 		5735EED22A8CF6FC00E3BB0C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		574269B52A94378F00752C81 /* Testing2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing2.swift; sourceTree = "<group>"; };
 		574269B72A94659600752C81 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCarouselView.swift; sourceTree = "<group>"; };
 		578838B92A8C7C0C006A1586 /* Gado Gado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gado Gado.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,7 +45,6 @@
 		578838DA2A8CD9AB006A1586 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		578838DC2A8CD9BE006A1586 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		57DE41FF2A926146001344EA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		57FC8F6E2A90CB38003AB65E /* TestingGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +69,7 @@
 		5720C1E82A9318ED00498B8F /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */,
 				5720C1E92A93190300498B8F /* TextFieldStyle.swift */,
 			);
 			path = Reusable;
@@ -120,14 +117,11 @@
 			isa = PBXGroup;
 			children = (
 				578838C02A8C7C0E006A1586 /* Assets.xcassets */,
-				577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */,
 				578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */,
 				578838C22A8C7C0E006A1586 /* Preview Content */,
 				5720C1E82A9318ED00498B8F /* Reusable */,
-				57FC8F6E2A90CB38003AB65E /* TestingGrid.swift */,
 				574269B22A942F9200752C81 /* Utility */,
 				574269B32A942FB100752C81 /* View */,
-				574269B52A94378F00752C81 /* Testing2.swift */,
 			);
 			path = "Gado Gado";
 			sourceTree = "<group>";
@@ -226,13 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57FC8F6F2A90CB38003AB65E /* TestingGrid.swift in Sources */,
 				574269B82A94659600752C81 /* GameDetailView.swift in Sources */,
 				5720C1EA2A93190300498B8F /* TextFieldStyle.swift in Sources */,
 				578838DB2A8CD9AB006A1586 /* DiscoverView.swift in Sources */,
 				577FB5A02A8E54CF009CA6C1 /* DiscoverCarouselView.swift in Sources */,
 				57DE42002A926146001344EA /* ImagePicker.swift in Sources */,
-				574269B62A94378F00752C81 /* Testing2.swift in Sources */,
 				5735EED32A8CF6FC00E3BB0C /* Extensions.swift in Sources */,
 				578838D92A8CD997006A1586 /* ExperienceView.swift in Sources */,
 				578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */,

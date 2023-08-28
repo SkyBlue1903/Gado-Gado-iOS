@@ -7,13 +7,21 @@
 
 import SwiftUI
 
+@MainActor
+final class ProfileViewModel: ObservableObject {
+  func logOut() throws {
+    try AuthManager.instance.logoutUser()
+  }
+}
+
 struct ProfileView: View {
   
-  @State private var showSignInView: Bool = true
   @Environment(\.colorScheme) var colorScheme
+  @StateObject private var viewModel = ProfileViewModel()
+  @Binding var showSignInView: Bool
   
   var body: some View {
-    ScrollView(.vertical) {
+//    ScrollView(.vertical) {
       VStack(alignment: .leading) {
         HeaderProfileView()
         VStack(alignment: .leading) {
@@ -55,34 +63,39 @@ struct ProfileView: View {
           }
           .padding(.leading)
           .frame(maxWidth: .infinity)
-          .background(colorScheme == .light ? Color.white : Color(hex: "151517"))
+          .background(colorScheme == .light ? Color.white : Color(hex: "1C1C1E"))
           .cornerRadius(10)
           
           Button {
-            
+            Task {
+              do {
+                try viewModel.logOut()
+                showSignInView = true
+              }
+            }
           } label: {
             CustomButtonStyle(title: "Log out")
           }
           .padding(.leading)
           .frame(maxWidth: .infinity)
-          .background(colorScheme == .light ? Color.white : Color(hex: "151517"))
+          .background(colorScheme == .light ? Color.white : Color(hex: "1C1C1E"))
           .cornerRadius(10)
-          .padding(.top, 32)
+          .padding(.top, getRect().height * 0.03)
         }
         .offset(y: -getRect().height * 0.1)
         .padding(.horizontal, 16)
         Spacer()
         
       }
-    }
-    .background(colorScheme == .light ? Color(hex: "#efeef6") : Color.black)
-    .edgesIgnoringSafeArea(.vertical)
+//    }
+    .background(colorScheme == .light ? Color(hex: "#F2F2F7") : Color.black) /* Form Style background */
+    .edgesIgnoringSafeArea(.all)
   }
 }
 
 struct ProfileView_Previews: PreviewProvider {
   static var previews: some View {
-    ProfileView()
+    ProfileView(showSignInView: .constant(false))
   }
 }
 

@@ -6,13 +6,19 @@
 //
 
 import SwiftUI
-
+import Firebase
 
 @main
 struct Gado_GadoApp: App {
   
   @State private var isLoggedIn = true
   @State private var tabSelection: RootTab = .today
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+  
+  //  init() {
+  //    FirebaseApp.configure()
+  //    print("Firebase configured check 1")
+  //  }
   
   var body: some Scene {
     WindowGroup {
@@ -35,7 +41,7 @@ struct Gado_GadoApp: App {
               Label("Discover", systemImage: "safari")
             }
             .tag(RootTab.discover)
-          ProfileView()
+          RootView()
             .tabItem {
               Label("Profile", systemImage: "person")
             }
@@ -44,5 +50,13 @@ struct Gado_GadoApp: App {
       }
       .accentColor(Color(.primaryApp))
     }
+  }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+    print("Firebase configured! check 2")
+    return true
   }
 }

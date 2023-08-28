@@ -17,6 +17,13 @@ struct TextFieldStyle: ViewModifier {
   }
 }
 
+struct TextFieldFormStyle: ViewModifier {
+  func body(content: Content) -> some View {
+    content
+      .frame(height: 45)
+  }
+}
+
 struct CustomButtonStyle: View {
   
   var title: String?
@@ -28,7 +35,17 @@ struct CustomButtonStyle: View {
         .foregroundColor(color ?? .blue)
       Spacer()
     }
-    .frame(height: 45)
+    .frame(height: 44)
+  }
+}
+
+struct CustomButtonFormStyle: ViewModifier {
+  func body(content: Content) -> some View {
+    content
+      .font(.headline)
+      .frame(maxWidth: .infinity)
+      .foregroundColor(.white)
+      .cornerRadius(10)
   }
 }
 

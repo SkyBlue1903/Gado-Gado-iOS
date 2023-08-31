@@ -41,8 +41,26 @@ final class AuthManager {
     fsData["username"] = username
     fsData["deviceOs"] = getCurrentiOS()
     fsData["deviceModel"] = UIDevice.modelName
+    fsData["lastAccess"] = Timestamp()
     
     try await Firestore.firestore().collection("developer").document(result.uid).setData(fsData, merge: false)
+  }
+  
+  @discardableResult
+  func signInUser(email: String, password: String) async throws -> FSUser {
+    /// Sign in with Auth, then update some data to Firestore
+    let auth = try await Auth.auth().signIn(withEmail: email, password: password)
+    let result = AuthUser(user: auth.user)
+    
+    var fsData: [String: Any] = [
+      "lastAccess": Timestamp(),
+      "deviceOs": getCurrentiOS(),
+      "deviceModel": UIDevice.modelName
+    ]
+    try await Firestore.firestore().collection("developer").document(result.uid).setData(fsData, merge: true)
+    
+    /// Retrieve User data from Firestore
+    return try await getFSUser(user: result)
   }
   
   func getAuthUser() throws -> AuthUser {
@@ -52,27 +70,31 @@ final class AuthManager {
     return AuthUser(user: auth)
   }
   
-  /// Please run `getAuthUser()` first before using this func as user info detail
+  /// Please run `getAuthUser()` or `signInUser()` first before using this func as user info detail
   func getFSUser(user: AuthUser) async throws -> FSUser {
     let snapshot = try await Firestore.firestore().collection("developer").document(user.uid).getDocument()
     
-    guard let data = snapshot.data(), let id = data["id"] as? String else {
+    guard let dataFetched = snapshot.data(), let id = dataFetched["id"] as? String else {
       throw URLError(.badServerResponse)
     }
     
-    let email = data["email"] as? String
-    let fullname = data["fullname"] as? String
-    let about = data["about"] as? String
-    let address = data["address"] as? String
-    let gender = data["gender"] as? String
+    let email = dataFetched["email"] as? String
+    let fullname = dataFetched["fullName"] as? String /// warning typo
+    let about = dataFetched["about"] as? String
+    let address = dataFetched["address"] as? String
+    let gender = dataFetched["gender"] as? String
     //    let id = data["id"] as? String
-    let birthdate = data["birthdate"] as? String
+    let birthdate = dataFetched["birthdate"] as? String
     let photoUrl = user.photoUrl
-    
-    return FSUser(uid: id, email: email, photoUrl: photoUrl, fullname: fullname, about: about, address: address, gender: gender, birthdate: birthdate)
+    let result = FSUser(uid: id, email: email, photoUrl: photoUrl, fullname: fullname, about: about, address: address, gender: gender, birthdate: birthdate)
+    return result
   }
   
   func logoutUser() throws {
     try Auth.auth().signOut()
+  }
+  
+  func resetPassword(email: String) async throws {
+    try await Auth.auth().sendPasswordReset(withEmail: email)
   }
 }

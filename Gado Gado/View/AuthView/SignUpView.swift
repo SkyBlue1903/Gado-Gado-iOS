@@ -14,10 +14,9 @@ final class SignUpViewModel: ObservableObject {
   @Published var fullname: String = ""
   @Published var email: String = ""
   @Published var password: String = ""
-//  @Published var gender: String = "Male"
   
   func signUp() async throws {
-    let auth = try await AuthManager.instance.createUser(email: self.email.lowercased(), password: self.password, fullname: self.fullname, username: self.username.lowercased())
+    let auth = try await AuthManager.instance.createUser(email: self.email, password: self.password, fullname: self.fullname, username: self.username)
   }
 }
 
@@ -26,23 +25,21 @@ struct SignUpView: View {
   @Environment(\.colorScheme) var colorScheme
   @StateObject private var viewModel = SignUpViewModel()
   @Binding var showSignInView: Bool
-  
   @State private var isSigningUp: Bool = false
   @State private var goToSignInView: Bool = false
-  let genderChoice = ["Male", "Female", "Rather not to say"]
   
   var body: some View {
     Form {
       TextField("Username", text: $viewModel.username)
+        .autocapitalization(.none)
+        .autocorrectionDisabled()
       TextField("Fullname", text: $viewModel.fullname)
+        .autocapitalization(.words)
+        .autocorrectionDisabled()
       TextField("Email", text: $viewModel.email)
-//      Picker("Gender", selection: $viewModel.gender) {
-//        ForEach(genderChoice, id: \.self) { gender in
-//          Text("\(gender)")
-//        }
-//      }
+        .autocapitalization(.none)
+        .autocorrectionDisabled()
       SecureField("Password", text: $viewModel.password)
-      
       Section {
         Button {
           print("IAM PRESSED")
@@ -50,7 +47,7 @@ struct SignUpView: View {
           Task {
             do {
               try await viewModel.signUp()
-                showSignInView = false
+              showSignInView = false
               isSigningUp = false
             } catch {
               print("error sign up:", error.localizedDescription)
@@ -71,30 +68,14 @@ struct SignUpView: View {
               .foregroundColor(.white)
               .cornerRadius(10)
           }
-          
-          
         }
         .disabled(!isSigningUp ? false : true)
         .tag(1)
-        //        .buttonStyle(.plain)
         .listRowBackground(!isSigningUp ? Color.accentColor : Color.gray.opacity(0.5))
       }
-      
-//      Section {
-      Button(action: {
-        goToSignInView.toggle()
-      }, label: {
-        Text("Already have an account? Sign In")
-          .font(.headline)
-          .frame(maxWidth: .infinity, alignment: .center)
-        NavigationLink("", destination: EmptyView(), isActive: $goToSignInView)
-          .hidden()
-      })
-//      }
-//      .padding(.top, -getRect().height * 0.03)
-      .listRowBackground(Color.clear)
     }
     .navigationTitle("Sign Up")
+    .navigationBarTitleDisplayMode(.large)
   }
 }
 

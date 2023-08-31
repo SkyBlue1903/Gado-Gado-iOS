@@ -15,6 +15,7 @@
 		57345AC42A9A3BAC008F1F00 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 57345AC32A9A3BAC008F1F00 /* SDWebImageSwiftUI */; };
 		57345AC62A9A4D83008F1F00 /* PlatformIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57345AC52A9A4D83008F1F00 /* PlatformIconView.swift */; };
 		5735EED32A8CF6FC00E3BB0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5735EED22A8CF6FC00E3BB0C /* Extensions.swift */; };
+		573E5EE72A9D8655009A27EA /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */; };
 		574269B82A94659600752C81 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574269B72A94659600752C81 /* GameDetailView.swift */; };
 		574775AF2A9AD9970093B930 /* ShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574775AE2A9AD9970093B930 /* ShareSheetView.swift */; };
 		574775B12A9B33E40093B930 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574775B02A9B33E40093B930 /* GameManager.swift */; };
@@ -48,6 +49,7 @@
 		57345ABD2A9A2895008F1F00 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		57345AC52A9A4D83008F1F00 /* PlatformIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformIconView.swift; sourceTree = "<group>"; };
 		5735EED22A8CF6FC00E3BB0C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		574269B72A94659600752C81 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		574775AE2A9AD9970093B930 /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
 		574775B02A9B33E40093B930 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -107,6 +109,17 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		573E5EE82A9D8661009A27EA /* AuthView */ = {
+			isa = PBXGroup;
+			children = (
+				576E4D1D2A9867730053493A /* RootView.swift */,
+				574775B42A9B6BD50093B930 /* SignUpView.swift */,
+				571AED1E2A9CE4E700921EBC /* SignInView.swift */,
+				573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */,
+			);
+			path = AuthView;
+			sourceTree = "<group>";
+		};
 		574269B22A942F9200752C81 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,14 +133,12 @@
 		574269B32A942FB100752C81 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				573E5EE82A9D8661009A27EA /* AuthView */,
 				578838BE2A8C7C0C006A1586 /* TodayView.swift */,
 				578838D82A8CD997006A1586 /* ExperienceView.swift */,
 				578838DA2A8CD9AB006A1586 /* DiscoverView.swift */,
 				578838DC2A8CD9BE006A1586 /* ProfileView.swift */,
 				574269B72A94659600752C81 /* GameDetailView.swift */,
-				576E4D1D2A9867730053493A /* RootView.swift */,
-				574775B42A9B6BD50093B930 /* SignUpView.swift */,
-				571AED1E2A9CE4E700921EBC /* SignInView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -151,10 +162,10 @@
 		578838BB2A8C7C0C006A1586 /* Gado Gado */ = {
 			isa = PBXGroup;
 			children = (
-				57345ABC2A9A288C008F1F00 /* Manager */,
 				578838C02A8C7C0E006A1586 /* Assets.xcassets */,
 				578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */,
 				57345ABA2A9A1FB9008F1F00 /* GoogleService-Info.plist */,
+				57345ABC2A9A288C008F1F00 /* Manager */,
 				578838C22A8C7C0E006A1586 /* Preview Content */,
 				5720C1E82A9318ED00498B8F /* Reusable */,
 				574269B22A942F9200752C81 /* Utility */,
@@ -260,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				573E5EE72A9D8655009A27EA /* ForgetPasswordView.swift in Sources */,
 				574269B82A94659600752C81 /* GameDetailView.swift in Sources */,
 				574775B12A9B33E40093B930 /* GameManager.swift in Sources */,
 				5720C1EA2A93190300498B8F /* TextFieldStyle.swift in Sources */,

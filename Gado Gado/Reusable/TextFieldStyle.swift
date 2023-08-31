@@ -17,10 +17,20 @@ struct TextFieldStyle: ViewModifier {
   }
 }
 
-struct TextFieldFormStyle: ViewModifier {
+struct TextFieldButtonStyle: ViewModifier {
+  
+  @Binding var isDisabled: Bool
+  
   func body(content: Content) -> some View {
     content
-      .frame(height: 45)
+      .padding()
+      .foregroundColor(Color.white)
+      .frame(maxWidth: .infinity)
+      .frame(height: CGFloat(.heightTF))
+      .background(!isDisabled ? Color.accentColor : Color.gray.opacity(0.5))
+      .cornerRadius(10)
+      .disabled(!isDisabled ? false : true)
+      .padding(.top, UIScreen().bounds.height * 0.03)
   }
 }
 
@@ -33,9 +43,10 @@ struct CustomButtonStyle: View {
     HStack {
       Text("\(title ?? "")")
         .foregroundColor(color ?? .blue)
+        .padding(.leading)
       Spacer()
     }
-    .frame(height: 44)
+    .frame(height: CGFloat(.heightTF))
   }
 }
 

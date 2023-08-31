@@ -13,10 +13,11 @@ struct RootView: View {
   var body: some View {
     NavigationView {
       if showSignInView {
-        SignUpView(showSignInView: $showSignInView)
+        SignInView(showSignInView: $showSignInView)
           .transition(.move(edge: .bottom))
       } else {
         ProfileView(showSignInView: $showSignInView)
+          .transition(.slide)
       }
     }
     .onAppear {

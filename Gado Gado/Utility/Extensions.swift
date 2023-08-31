@@ -40,7 +40,8 @@ extension Color {
     case .darkDefaultBg:
       self = Color(hex: "202020")
     case .primaryApp:
-      self = Color(hex: "7DCE13")
+      self = Color(hex: "7DCE13") /// Mint green
+//      self = Color(hex: "4F3728") /// Color brown
     case .secondaryApp:
       self = Color(hex: "00000") // MARK: Brown color needs to fix soon
     }
@@ -61,7 +62,7 @@ extension CGFloat {
   init(_ size: SizePalette) {
     switch size {
     case .heightTF:
-      self = 48
+      self = 45
     }
   }
   

@@ -37,13 +37,17 @@ struct TextFieldButtonStyle: ViewModifier {
 struct CustomButtonStyle: View {
   
   var title: String?
+  var titleInProgress: String?
   var color: Color?
+  var inProgress: Bool?
   
   var body: some View {
-    HStack {
-      Text("\(title ?? "")")
-        .foregroundColor(color ?? .blue)
+    HStack(spacing: 10) {
+      Text("\(inProgress ?? false ? titleInProgress ?? "" : title ?? "")")
+        .foregroundColor(inProgress ?? false ? Color.gray : color ?? Color.accentColor)
         .padding(.leading)
+      ProgressView()
+        .isHidden(inProgress ?? false ? false : true)
       Spacer()
     }
     .frame(height: CGFloat(.heightTF))

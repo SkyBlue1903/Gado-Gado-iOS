@@ -82,11 +82,6 @@ struct ForgetPasswordView: View {
       }
       .padding()
       .alert(isPresented: $alertState) {
-        Alert(title: Text("Success"), message: Text("Check your email and follow the step to reset your password"), dismissButton: .default(Text("OK")) {
-          presentation.wrappedValue.dismiss()
-        })
-      }
-      .alert(isPresented: $alertState) {
         Alert(
           title: Text("Success"), // Empty title
           message: Text("Check your mail inbox/spam and follow the instruction to reset password"),

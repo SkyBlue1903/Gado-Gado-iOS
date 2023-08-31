@@ -11,6 +11,7 @@ import SwiftUI
 final class ProfileViewModel: ObservableObject {
   
   @Published private(set) var user: FSUser? = nil
+  @Published var localizedError: String = ""
   
   func logOut() throws {
     try AuthManager.instance.logoutUser()
@@ -30,17 +31,26 @@ final class ProfileViewModel: ObservableObject {
     return user?.fullname ?? ""
   }
   
-  func getUserEmail() -> String {
-    return user?.email ?? ""
+  func resetPassword() async throws {
+    let auth = try AuthManager.instance.getAuthUser()
+    
+    guard let email = auth.email else {
+      throw URLError(.fileDoesNotExist)
+    }
+    try await AuthManager.instance.resetPassword(email: email)
   }
 }
 
 struct ProfileView: View {
   
   @Environment(\.colorScheme) var colorScheme
+  @Environment(\.presentationMode) var presentation
   @StateObject private var viewModel = ProfileViewModel()
   @Binding var showSignInView: Bool
   @State private var selected: Int = 0
+  @State private var isResettingPw: Bool = false
+  @State private var alertState: Bool = false
+  
   var body: some View {
     //    ScrollView(.vertical) {
     VStack(alignment: .leading) {
@@ -56,12 +66,34 @@ struct ProfileView: View {
           .padding(.leading, 16)
         VStack(alignment: .trailing, spacing: 0) {
           Button {
-            
+            isResettingPw = true
+            viewModel.localizedError = ""
+            Task {
+              do {
+                try await viewModel.resetPassword()
+                alertState.toggle()
+                isResettingPw = false
+              } catch {
+                viewModel.localizedError = error.localizedDescription
+                alertState.toggle()
+                isResettingPw = false
+              }
+            }
           } label: {
-            CustomButtonStyle(title: "Reset password")
+            CustomButtonStyle(title: "Reset password", titleInProgress: "Resetting password...", inProgress: isResettingPw)
             
           }
-          .tag(1)
+          .disabled(isResettingPw ? true : false)
+          .alert(isPresented: $alertState) {
+            Alert(
+              title: Text("\(viewModel.localizedError.isEmpty ? "Success" : "Error")"), // Empty title
+              message: Text("\(viewModel.localizedError.isEmpty ? "Check your mail inbox/spam and follow the instruction to reset password" : viewModel.localizedError)"),
+              dismissButton: .default(Text("OK"), action: {
+                presentation.wrappedValue.dismiss()
+              }
+                                     )
+            )
+          }
           Divider()
             .frame(maxWidth: .infinity)
             .padding(.leading)
@@ -111,7 +143,7 @@ struct ProfileView: View {
       .padding(.horizontal, 16)
       Spacer()
     }
-//    .frame(minHeight: getRect().height * 0.7)
+    .frame(minHeight: getRect().height * 0.7)
     //    }
     .background(colorScheme == .light ? Color(hex: "#F2F2F7") : Color.black) /* Form Style background */
 //    .edgesIgnoringSafeArea(.all)

@@ -59,7 +59,6 @@ struct UpdatePasswordView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
           Button {
             isResetting = true
-            print("Pressed")
             Task {
               do {
                 try await viewModel.updatePassword()
@@ -73,11 +72,12 @@ struct UpdatePasswordView: View {
           } label: {
             if !isResetting {
               Text("Update password")
-            } else if isResetting /*&& !viewModel.email.isEmpty*/ {
+                .modifier(TextFieldButtonStyle(isDisabled: $isResetting))
+            } else if isResetting {
               ProgressView()
+                .modifier(TextFieldButtonStyle(isDisabled: $isResetting))
             }
           }
-          .modifier(TextFieldButtonStyle(isDisabled: $isResetting))
           .padding(.top, getRect().height * 0.03)
           .disabled(isResetting ? true : false)
           Spacer()

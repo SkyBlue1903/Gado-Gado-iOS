@@ -24,7 +24,6 @@ final class ProfileViewModel: ObservableObject {
       let result = try await AuthManager.instance.getFSUser(user: auth)
       self.user = result
     } catch {
-      print("Error loading user data: \(error)")
     }
   }
   
@@ -60,6 +59,7 @@ struct ProfileView: View {
   @State private var isResettingPw: Bool = false
   @State private var alertState: Bool = false
   @State private var updatePasswordViewSheet: Bool = false
+  @State private var updateEmailViewSheet: Bool = false
   @State private var userFullname: String = ""
   @State private var username: String = ""
   @State private var profilePic: String = ""
@@ -137,9 +137,12 @@ struct ProfileView: View {
             .frame(maxWidth: .infinity)
             .padding(.leading)
           Button {
-            
+            updateEmailViewSheet.toggle()
           } label: {
             CustomButtonStyle(title: "Update email")
+          }
+          .sheet(isPresented: $updateEmailViewSheet) {
+            UpdateEmailView(showSignInView: $showSignInView)
           }
           Divider()
             .frame(maxWidth: .infinity)

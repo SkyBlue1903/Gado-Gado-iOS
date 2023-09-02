@@ -82,16 +82,13 @@ final class AuthManager {
     let fullname = dataFetched["fullName"] as? String /// warning typo
     guard let usernameAt = dataFetched["username"] as? String else {
       throw URLError(.badServerResponse)
-      
     }
     let about = dataFetched["about"] as? String
     let address = dataFetched["address"] as? String
     let gender = dataFetched["gender"] as? String
-    //    let id = data["id"] as? String
     let birthdate = dataFetched["birthdate"] as? String
     let photoUrl = dataFetched["imageProfile"] as? String
-    let result = FSUser(uid: id, email: email, photoUrl: photoUrl, fullname: fullname, username: usernameAt, about: about, address: address, gender: gender, birthdate: birthdate)
-    return result
+    return FSUser(uid: id, email: email, photoUrl: photoUrl, fullname: fullname, username: usernameAt, about: about, address: address, gender: gender, birthdate: birthdate)
   }
   
   func logoutUser() throws {
@@ -109,6 +106,16 @@ final class AuthManager {
     
     try await auth.updatePassword(to: password)
     try await Firestore.firestore().collection("developer").document(auth.uid).setData(["password": password], merge: true)
+    
+    try logoutUser()
+  }
+  
+  func updateEmail(email: String) async throws {
+    guard let auth = Auth.auth().currentUser else {
+      throw URLError(.badServerResponse)
+    }
+    try await auth.updateEmail(to: email)
+    try await Firestore.firestore().collection("developer").document(auth.uid).setData(["email": email], merge: true)
     
     try logoutUser()
   }

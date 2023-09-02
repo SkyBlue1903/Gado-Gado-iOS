@@ -154,7 +154,6 @@ struct GameDetailView: View {
             .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin)
         })
         .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
-          //          print("SCROLL VALUE:", self.scrollPosition)
           self.scrollPosition = value
           
           let minScrollPosition: CGFloat = -getRect().height * 0.4 + (statusBarHeight + 44)

@@ -42,7 +42,6 @@ struct SignUpView: View {
       SecureField("Password", text: $viewModel.password)
       Section {
         Button {
-          print("IAM PRESSED")
           isSigningUp = true
           Task {
             do {
@@ -50,7 +49,6 @@ struct SignUpView: View {
               showSignInView = false
               isSigningUp = false
             } catch {
-              print("error sign up:", error.localizedDescription)
               isSigningUp = false
             }
           }

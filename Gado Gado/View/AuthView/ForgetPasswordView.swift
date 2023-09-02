@@ -63,7 +63,6 @@ struct ForgetPasswordView: View {
             .opacity(!isResetting && viewModel.email.isEmpty ? 1 : 0)
           Button {
             isResetting = true
-//            print("pressed")
             Task {
               do {
                 try await viewModel.reset(email: viewModel.email)

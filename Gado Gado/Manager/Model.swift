@@ -38,15 +38,17 @@ struct FSUser {
   let email: String?
   let photoUrl: String?
   let fullname: String?
+  let username: String
   let about: String?
   let address: String?
   let gender: String?
   let birthdate: String?
-  init(uid: String, email: String?, photoUrl: String?, fullname: String?, about: String?, address: String?, gender: String?, birthdate: String?) {
+  init(uid: String, email: String?, photoUrl: String?, fullname: String?, username: String, about: String?, address: String?, gender: String?, birthdate: String?) {
     self.uid = uid
     self.email = email
     self.photoUrl = photoUrl
     self.fullname = fullname
+    self.username = username
     self.about = about
     self.address = address
     self.gender = gender

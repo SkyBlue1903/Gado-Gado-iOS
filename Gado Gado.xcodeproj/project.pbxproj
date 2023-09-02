@@ -36,6 +36,7 @@
 		578838DB2A8CD9AB006A1586 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DA2A8CD9AB006A1586 /* DiscoverView.swift */; };
 		578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DC2A8CD9BE006A1586 /* ProfileView.swift */; };
 		57B0BEBB2A8E02F900F14629 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 57B0BEBA2A8E02F900F14629 /* SwiftlySearch */; };
+		57B164222AA180B200E8260B /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B164212AA180B200E8260B /* UpdatePasswordView.swift */; };
 		57DE41FE2A9240B9001344EA /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 57DE41FD2A9240B9001344EA /* BottomSheet */; };
 		57DE42002A926146001344EA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE41FF2A926146001344EA /* ImagePicker.swift */; };
 		57FF051B2A9210D200F1A6CD /* VisualEffectView in Frameworks */ = {isa = PBXBuildFile; productRef = 57FF051A2A9210D200F1A6CD /* VisualEffectView */; };
@@ -65,6 +66,7 @@
 		578838D82A8CD997006A1586 /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
 		578838DA2A8CD9AB006A1586 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		578838DC2A8CD9BE006A1586 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		57B164212AA180B200E8260B /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
 		57DE41FF2A926146001344EA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +118,7 @@
 				574775B42A9B6BD50093B930 /* SignUpView.swift */,
 				571AED1E2A9CE4E700921EBC /* SignInView.swift */,
 				573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */,
+				57B164212AA180B200E8260B /* UpdatePasswordView.swift */,
 			);
 			path = AuthView;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				574269B82A94659600752C81 /* GameDetailView.swift in Sources */,
 				574775B12A9B33E40093B930 /* GameManager.swift in Sources */,
 				5720C1EA2A93190300498B8F /* TextFieldStyle.swift in Sources */,
+				57B164222AA180B200E8260B /* UpdatePasswordView.swift in Sources */,
 				578838DB2A8CD9AB006A1586 /* DiscoverView.swift in Sources */,
 				577FB5A02A8E54CF009CA6C1 /* DiscoverCarouselView.swift in Sources */,
 				57345AC62A9A4D83008F1F00 /* PlatformIconView.swift in Sources */,

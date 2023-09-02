@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct TextFieldStyle: ViewModifier {
+  
+  @Environment(\.colorScheme) var colorScheme
+  
   func body(content: Content) -> some View {
     content
       .padding()
       .frame(height: CGFloat(.heightTF))
-      .background(Color.gray.opacity(CGFloat(.fieldOpacity)))
+      .background(colorScheme == .light ? Color.white : Color(hex: "1C1C1E"))
       .cornerRadius(10)
   }
 }
@@ -23,14 +26,14 @@ struct TextFieldButtonStyle: ViewModifier {
   
   func body(content: Content) -> some View {
     content
-      .padding()
+//      .padding()
       .foregroundColor(Color.white)
       .frame(maxWidth: .infinity)
       .frame(height: CGFloat(.heightTF))
       .background(!isDisabled ? Color.accentColor : Color.gray.opacity(0.5))
       .cornerRadius(10)
       .disabled(!isDisabled ? false : true)
-      .padding(.top, UIScreen().bounds.height * 0.03)
+//      .padding(.top, UIScreen().bounds.height * 0.03)
   }
 }
 

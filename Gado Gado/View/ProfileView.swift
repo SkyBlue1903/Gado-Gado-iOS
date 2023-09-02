@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 @MainActor
 final class ProfileViewModel: ObservableObject {
@@ -31,6 +32,14 @@ final class ProfileViewModel: ObservableObject {
     return user?.fullname ?? ""
   }
   
+  func getUsername() -> String {
+    return user?.username ?? ""
+  }
+  
+  func getProfilePicture() -> String {
+    return user?.photoUrl ?? ""
+  }
+  
   func resetPassword() async throws {
     let auth = try AuthManager.instance.getAuthUser()
     
@@ -50,14 +59,25 @@ struct ProfileView: View {
   @State private var selected: Int = 0
   @State private var isResettingPw: Bool = false
   @State private var alertState: Bool = false
+  @State private var updatePasswordViewSheet: Bool = false
+  @State private var userFullname: String = ""
+  @State private var username: String = ""
+  @State private var profilePic: String = ""
   
   var body: some View {
     //    ScrollView(.vertical) {
     VStack(alignment: .leading) {
-      HeaderProfileView()
+      HeaderProfileView(profilePic: self.profilePic)
       VStack(alignment: .leading) {
-        Text("\(viewModel.getUserFullname())")
-          .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
+        VStack(alignment: .leading, spacing: 0) {
+          Text("\(userFullname.isEmpty ? "Loading..." : userFullname)")
+            .foregroundColor(userFullname.isEmpty ? Color.gray.opacity(0.3) : colorScheme == .light ? Color.black : Color.white)
+            .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
+          Text("\(username.isEmpty ? "Unknown" : "@" + username)")
+            .opacity(username.isEmpty ? 0 : 1)
+            .foregroundColor(Color.gray)
+            .font(.system(size: UIFont.preferredFont(forTextStyle: .callout).pointSize, weight: .regular))
+        }
           .offset(y: -15)
         Text("Account Settings".uppercased())
           .offset(y: 5)
@@ -65,6 +85,14 @@ struct ProfileView: View {
           .foregroundColor(Color(hex: "727272"))
           .padding(.leading, 16)
         VStack(alignment: .trailing, spacing: 0) {
+          Button {
+            
+          } label: {
+            CustomButtonStyle(title: "Update account info")
+          }
+          Divider()
+            .frame(maxWidth: .infinity)
+            .padding(.leading)
           Button {
             isResettingPw = true
             viewModel.localizedError = ""
@@ -87,7 +115,7 @@ struct ProfileView: View {
           .alert(isPresented: $alertState) {
             Alert(
               title: Text("\(viewModel.localizedError.isEmpty ? "Success" : "Error")"), // Empty title
-              message: Text("\(viewModel.localizedError.isEmpty ? "Check your mail inbox/spam and follow the instruction to reset password" : viewModel.localizedError)"),
+              message: Text("\(viewModel.localizedError.isEmpty ? "Check your mail inbox/spam and follow the instruction to reset password." : viewModel.localizedError)"),
               dismissButton: .default(Text("OK"), action: {
                 presentation.wrappedValue.dismiss()
               }
@@ -98,9 +126,12 @@ struct ProfileView: View {
             .frame(maxWidth: .infinity)
             .padding(.leading)
           Button {
-            
+            updatePasswordViewSheet.toggle()
           } label: {
             CustomButtonStyle(title: "Update password")
+          }
+          .sheet(isPresented: $updatePasswordViewSheet) {
+            UpdatePasswordView(showSignInView: $showSignInView)
           }
           Divider()
             .frame(maxWidth: .infinity)
@@ -119,7 +150,7 @@ struct ProfileView: View {
             CustomButtonStyle(title: "Delete account", color: Color.red)
           }
         }
-//        .padding(.leading)
+        //        .padding(.leading)
         .frame(maxWidth: .infinity)
         .background(colorScheme == .light ? Color.white : Color(hex: "1C1C1E"))
         .cornerRadius(10)
@@ -146,15 +177,18 @@ struct ProfileView: View {
     .frame(minHeight: getRect().height * 0.7)
     //    }
     .background(colorScheme == .light ? Color(hex: "#F2F2F7") : Color.black) /* Form Style background */
-//    .edgesIgnoringSafeArea(.all)
+    //    .edgesIgnoringSafeArea(.all)
     .onAppear {
-//      DispatchQueue.main.async {
-        Task {
-          do {
-            try? await viewModel.initLoadUser()
-          }
+      //      DispatchQueue.main.async {
+      Task {
+        do {
+          try? await viewModel.initLoadUser()
+          self.userFullname = viewModel.getUserFullname()
+          self.username = viewModel.getUsername()
+          self.profilePic = viewModel.getProfilePicture()
         }
-//      }
+      }
+      //      }
       
     }
   }
@@ -167,7 +201,10 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 struct HeaderProfileView: View {
+  
   @Environment(\.colorScheme) var colorScheme
+  var profilePic: String
+  
   var body: some View {
     ZStack {
       Image("sample-header")
@@ -194,15 +231,26 @@ struct HeaderProfileView: View {
     ZStack {
       ZStack {
         Circle()
-          .fill(colorScheme == .light ? Color(hex: "#efeef6") : Color.black)
+          .fill(colorScheme == .light ? Color(hex: "#F2F2F7") : Color.black)
           .frame(width: getRect().height * 0.16, height: getRect().height * 0.16)
-        Image("sample-profile")
-          .resizable()
-          .frame(width: getRect().height * 0.15, height: getRect().height * 0.15)
-          .foregroundColor(.green)
-          .mask(
-            Circle()
-          )
+        if profilePic.isEmpty {
+          Image("sample-profile")
+            .resizable()
+            .frame(width: getRect().height * 0.15, height: getRect().height * 0.15)
+//            .foregroundColor(.green)
+            .mask(
+              Circle()
+            )
+        } else {
+          WebImage(url: URL(string: profilePic))
+            .resizable()
+            .frame(width: getRect().height * 0.15, height: getRect().height * 0.15)
+//            .foregroundColor(.green)
+            .mask(
+              Circle()
+            )
+        }
+          
       }
       .padding(.leading)
       

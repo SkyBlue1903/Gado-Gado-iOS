@@ -34,10 +34,10 @@ final class AuthManager {
     
     fsData["about"] = ""
     fsData["address"] = ""
-//    fsData["birthdate"] = Date()?? maybe // MARK: Birthday are required to verify user
+    //    fsData["birthdate"] = Date()?? maybe // MARK: Birthday are required to verify user
     fsData["password"] = password
     fsData["fullName"] = fullname
-//    fsData["gender"] = gender /// Disabled because of inefficient form
+    //    fsData["gender"] = gender /// Disabled because of inefficient form
     fsData["username"] = username
     fsData["deviceOs"] = getCurrentiOS()
     fsData["deviceModel"] = UIDevice.modelName
@@ -80,13 +80,17 @@ final class AuthManager {
     
     let email = dataFetched["email"] as? String
     let fullname = dataFetched["fullName"] as? String /// warning typo
+    guard let usernameAt = dataFetched["username"] as? String else {
+      throw URLError(.badServerResponse)
+      
+    }
     let about = dataFetched["about"] as? String
     let address = dataFetched["address"] as? String
     let gender = dataFetched["gender"] as? String
     //    let id = data["id"] as? String
     let birthdate = dataFetched["birthdate"] as? String
-    let photoUrl = user.photoUrl
-    let result = FSUser(uid: id, email: email, photoUrl: photoUrl, fullname: fullname, about: about, address: address, gender: gender, birthdate: birthdate)
+    let photoUrl = dataFetched["imageProfile"] as? String
+    let result = FSUser(uid: id, email: email, photoUrl: photoUrl, fullname: fullname, username: usernameAt, about: about, address: address, gender: gender, birthdate: birthdate)
     return result
   }
   
@@ -96,5 +100,16 @@ final class AuthManager {
   
   func resetPassword(email: String) async throws {
     try await Auth.auth().sendPasswordReset(withEmail: email)
+  }
+  
+  func updatePassword(password: String) async throws {
+    guard let auth = Auth.auth().currentUser else {
+      throw URLError(.badServerResponse)
+    }
+    
+    try await auth.updatePassword(to: password)
+    try await Firestore.firestore().collection("developer").document(auth.uid).setData(["password": password], merge: true)
+    
+    try logoutUser()
   }
 }

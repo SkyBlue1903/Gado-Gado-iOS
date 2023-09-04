@@ -17,6 +17,7 @@
 		5735EED32A8CF6FC00E3BB0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5735EED22A8CF6FC00E3BB0C /* Extensions.swift */; };
 		573E5EE72A9D8655009A27EA /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */; };
 		574269B82A94659600752C81 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574269B72A94659600752C81 /* GameDetailView.swift */; };
+		57438F9D2AA4515B00E98BB3 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57438F9C2AA4515B00E98BB3 /* DeleteAccountView.swift */; };
 		574775AF2A9AD9970093B930 /* ShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574775AE2A9AD9970093B930 /* ShareSheetView.swift */; };
 		574775B12A9B33E40093B930 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574775B02A9B33E40093B930 /* GameManager.swift */; };
 		574775B32A9B4BE10093B930 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574775B22A9B4BE00093B930 /* AuthManager.swift */; };
@@ -53,6 +54,7 @@
 		5735EED22A8CF6FC00E3BB0C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		574269B72A94659600752C81 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
+		57438F9C2AA4515B00E98BB3 /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		574775AE2A9AD9970093B930 /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
 		574775B02A9B33E40093B930 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		574775B22A9B4BE00093B930 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */,
 				57B164212AA180B200E8260B /* UpdatePasswordView.swift */,
 				579271732AA32A7100F24217 /* UpdateEmailView.swift */,
+				57438F9C2AA4515B00E98BB3 /* DeleteAccountView.swift */,
 			);
 			path = AuthView;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				57345ABE2A9A2896008F1F00 /* Model.swift in Sources */,
 				571AED1F2A9CE4E700921EBC /* SignInView.swift in Sources */,
 				578838D92A8CD997006A1586 /* ExperienceView.swift in Sources */,
+				57438F9D2AA4515B00E98BB3 /* DeleteAccountView.swift in Sources */,
 				578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */,
 				576E4D1E2A9867730053493A /* RootView.swift in Sources */,
 				574775AF2A9AD9970093B930 /* ShareSheetView.swift in Sources */,

@@ -39,7 +39,18 @@ struct SignUpView: View {
       TextField("Email", text: $viewModel.email)
         .autocapitalization(.none)
         .autocorrectionDisabled()
-      SecureField("Password", text: $viewModel.password)
+      SecureField("Password", text: $viewModel.password) {
+        isSigningUp = true
+        Task {
+          do {
+            try await viewModel.signUp()
+            showSignInView = false
+            isSigningUp = false
+          } catch {
+            isSigningUp = false
+          }
+        }
+      }
       Section {
         Button {
           isSigningUp = true

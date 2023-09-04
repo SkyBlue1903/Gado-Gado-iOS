@@ -60,6 +60,7 @@ struct ProfileView: View {
   @State private var alertState: Bool = false
   @State private var updatePasswordViewSheet: Bool = false
   @State private var updateEmailViewSheet: Bool = false
+  @State private var deleteAccountViewSheet: Bool = false
   @State private var userFullname: String = ""
   @State private var username: String = ""
   @State private var profilePic: String = ""
@@ -148,9 +149,12 @@ struct ProfileView: View {
             .frame(maxWidth: .infinity)
             .padding(.leading)
           Button {
-            
+            deleteAccountViewSheet.toggle()
           } label: {
             CustomButtonStyle(title: "Delete account", color: Color.red)
+          }
+          .sheet(isPresented: $deleteAccountViewSheet) {
+            DeleteAccountView(showSignInView: $showSignInView)
           }
         }
         //        .padding(.leading)

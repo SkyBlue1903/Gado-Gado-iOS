@@ -119,4 +119,9 @@ final class AuthManager {
     
     try logoutUser()
   }
+  
+  func deleteUser(userId: String) async throws {
+    try await Firestore.firestore().collection("developer").document(userId).delete()
+    try await auth.delete()
+  }
 }

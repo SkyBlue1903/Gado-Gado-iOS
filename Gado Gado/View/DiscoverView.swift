@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftlySearch
 import VisualEffectView
 
 struct DiscoverView: View {

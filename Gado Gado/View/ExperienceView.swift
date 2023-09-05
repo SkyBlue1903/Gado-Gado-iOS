@@ -7,6 +7,8 @@
 
 import SwiftUI
 import BottomSheet
+import PhotosUI
+import UIKit
 
 struct ExperienceView: View {
   
@@ -100,6 +102,42 @@ struct ExperienceView_Previews: PreviewProvider {
   }
 }
 
+extension UIView {
+  func toImage() -> UIImage {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
+    self.layer.render(in: UIGraphicsGetCurrentContext()!)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image!
+  }
+}
+
+@MainActor
+final class AddExperienceViewModel: ObservableObject {
+  func saveImage(item: Image) {
+    Task {
+      // Konversi Image menjadi UIImage
+      guard let uiImage = UIImage(systemName: "icloud.and.arrow.up.fill") else {
+        // Handle error jika tidak dapat mengonversi Image ke UIImage
+        print("Gagal mengonversi Image ke UIImage")
+        return
+      }
+      
+      // Menyimpan UIImage ke galeri
+      PHPhotoLibrary.shared().performChanges {
+        let request = PHAssetChangeRequest.creationRequestForAsset(from: uiImage)
+//        request.placeholderForCreatedAsset?.isHidden = false
+      } completionHandler: { success, error in
+        if success {
+          print("Gambar berhasil disimpan ke galeri.")
+        } else if let error = error {
+          print("Error saat menyimpan gambar: \(error.localizedDescription)")
+        }
+      }
+    }
+  }
+}
+
 struct AddExperienceView: View {
   
   @State private var currentDateAndTime: String = ""
@@ -111,14 +149,14 @@ struct AddExperienceView: View {
   @State private var chosenImage: UIImage?
   @State private var image: Image?
   @State private var hideRemoveButton: Bool = true
+  @State private var addingExperience: Bool = false
+  @StateObject private var viewModel = AddExperienceViewModel()
   
   var body: some View {
     ScrollView(.vertical) {
       VStack(alignment: .leading, spacing: 10) {
-        //            Section(footer: Text("Created at \(currentDateAndTime.isEmpty ? "(Error cannot get current time)" : currentDateAndTime)")){
         Text("Game Thumbnail".uppercased())
           .font(.caption)
-        
           .foregroundColor(Color.gray)
         ZStack {
           VStack(spacing: 10) {
@@ -131,16 +169,14 @@ struct AddExperienceView: View {
             .resizable()
             .scaledToFit()
         }
-          
-          //              .modifier(TextFieldStyle())
-          .foregroundColor(Color.gray)
-          .frame(maxWidth: .infinity)
-          .frame(height: getRect().height * 0.2)
-          .background(Color.gray.opacity(CGFloat(.fieldOpacity)))
-          .cornerRadius(10)
-          .onTapGesture {
-            showingImagePicker.toggle()
-          }
+        .foregroundColor(Color.gray)
+        .frame(maxWidth: .infinity)
+        .frame(height: getRect().height * 0.2)
+        .background(Color.gray.opacity(CGFloat(.fieldOpacity)))
+        .cornerRadius(10)
+        .onTapGesture {
+          showingImagePicker.toggle()
+        }
         HStack(spacing: 15) {
           Button {
             showingImagePicker.toggle()
@@ -157,10 +193,8 @@ struct AddExperienceView: View {
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
         .isHidden(hideRemoveButton)
-        
         Text("Game Detail".uppercased())
           .font(.caption)
-//          .padding(.top, 15)
           .foregroundColor(Color(hex: "727272"))
         TextField("Game title", text: $gameTitle)
           .modifier(TextFieldStyle())
@@ -174,7 +208,20 @@ struct AddExperienceView: View {
           .font(.caption)
           .foregroundColor(Color(hex: "727272"))
           .frame(maxWidth: .infinity, alignment: .leading)
-        //            }
+        Button {
+          addingExperience.toggle()
+          viewModel.saveImage(item: image ?? Image(""))
+        } label: {
+          if !addingExperience {
+            Text("Add experience")
+              .modifier(TextFieldButtonStyle(isDisabled: $addingExperience))
+          } else {
+            ProgressView()
+              .modifier(TextFieldButtonStyle(isDisabled: $addingExperience))
+          }
+        }
+        .disabled(addingExperience ? true : false)
+        .padding(.top, getRect().height * 0.03)
       }
       .padding(.horizontal)
       .padding(.bottom, getRect().height * 0.2)
@@ -203,10 +250,6 @@ struct AddExperienceView: View {
         self.currentDateAndTime = "\(date) \(month) \(year) @ \(hour):\(mins)"
       }
     }
-  }
-  
-  func saveImage() {
-    
   }
   
   func loadImage() {

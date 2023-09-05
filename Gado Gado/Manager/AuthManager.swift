@@ -121,6 +121,9 @@ final class AuthManager {
   }
   
   func deleteUser(userId: String) async throws {
+    guard let auth = Auth.auth().currentUser else {
+      throw URLError(.badURL)
+    }
     try await Firestore.firestore().collection("developer").document(userId).delete()
     try await auth.delete()
   }

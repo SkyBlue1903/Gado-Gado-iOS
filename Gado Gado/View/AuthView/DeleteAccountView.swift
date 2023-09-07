@@ -93,7 +93,7 @@ struct DeleteAccountView: View {
           )
         }
         .toolbar {
-          ToolbarItem(placement: .navigationBarTrailing) {
+          ToolbarItem(placement: .primaryAction) {
             Button {
               presentation.wrappedValue.dismiss()
             } label: {

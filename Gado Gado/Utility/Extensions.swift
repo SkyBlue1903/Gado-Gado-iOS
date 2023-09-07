@@ -56,6 +56,33 @@ extension View {
   func isHidden(_ isHidden: Bool) -> some View {
     modifier(HiddenModifier(isHidden: isHidden))
   }
+  
+  /// This function changes our View to UIView, then calls another function
+  /// to convert the newly-made UIView to a UIImage.
+  public func asUIImage() -> UIImage {
+    let controller = UIHostingController(rootView: self)
+    
+    /// Set the background to be transparent incase the image is a PNG, WebP or (Static) GIF
+    controller.view.backgroundColor = .clear
+    
+    controller.view.frame = CGRect(x: 0, y: CGFloat(Int.max), width: 1, height: 1)
+    UIApplication.shared.windows.first!.rootViewController?.view.addSubview(controller.view)
+    
+    let size = controller.sizeThatFits(in: UIScreen.main.bounds.size)
+    controller.view.bounds = CGRect(origin: .zero, size: size)
+    controller.view.sizeToFit()
+    
+    /// here is the call to the function that converts UIView to UIImage: `.asUIImage()`
+    let image = controller.view.asUIImage()
+    controller.view.removeFromSuperview()
+    return image
+  }
+  
+  func onReturn(perform action: @escaping () -> Void) -> some View {
+    return self.onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
+      action()
+    }
+  }
 }
 
 extension CGFloat {
@@ -134,3 +161,48 @@ extension UIDevice {
   }()
   
 }
+
+extension UIView {
+  /// This is the function to convert UIView to UIImage
+  public func asUIImage() -> UIImage {
+    let renderer = UIGraphicsImageRenderer(bounds: bounds)
+    return renderer.image { rendererContext in
+      layer.render(in: rendererContext.cgContext)
+    }
+  }
+  
+  func toImage() -> UIImage {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
+    self.layer.render(in: UIGraphicsGetCurrentContext()!)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image!
+  }
+}
+
+extension Array where Element == String {
+  func arrayToString() -> String {
+    // Filter out empty strings from the array
+    let nonEmptyStrings = self.filter { !$0.isEmpty }
+    
+    switch nonEmptyStrings.count {
+    case 0:
+      return ""
+    case 1:
+      return nonEmptyStrings.first ?? ""
+    case 2:
+      return "\(nonEmptyStrings[0]) and \(nonEmptyStrings[1])"
+    default:
+      var result = ""
+      for (index, item) in nonEmptyStrings.dropLast().enumerated() {
+        result += "\(item), "
+        if index == nonEmptyStrings.count - 2 {
+          result += "and "
+        }
+      }
+      result += nonEmptyStrings.last ?? ""
+      return result
+    }
+  }
+}
+

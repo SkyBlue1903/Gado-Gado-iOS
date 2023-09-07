@@ -13,7 +13,7 @@ import UIKit
 struct ExperienceView: View {
   
   @Environment(\.colorScheme) var colorScheme
-  @State private var bottomSheetPosition: BottomSheetPosition = .hidden
+  @State private var bottomSheetPosition: BottomSheetPosition = .absoluteTop(500)
   @State private var navTitle: String = ""
   
   var body: some View {
@@ -66,7 +66,7 @@ struct ExperienceView: View {
       //        .opacity(bottomSheetPosition == .hidden ? 1 : 0)
       .navigationTitle("Experience")
       .toolbar {
-        ToolbarItem(placement: .navigationBarTrailing) {
+        ToolbarItem(placement: .primaryAction) {
           //            Image(systemName: "plus")
           Button {
             // ACTION OPEN SHEET
@@ -79,7 +79,7 @@ struct ExperienceView: View {
       
       .bottomSheet(bottomSheetPosition: self.$bottomSheetPosition, switchablePositions: [.relativeTop(0.3), .relativeTop(0.6), .relativeTop(0.85)], title: "Add Experience") {
         ///** CONTENT HERE
-        AddExperienceView()
+        AddExperienceView(bottomSheetPosition: $bottomSheetPosition)
       }
       .enableTapToDismiss(true)
       .showCloseButton(true)
@@ -96,61 +96,60 @@ struct ExperienceView: View {
 
 struct ExperienceView_Previews: PreviewProvider {
   static var previews: some View {
-    //      NavigationView {
     ExperienceView()
-    //      }
-  }
-}
-
-extension UIView {
-  func toImage() -> UIImage {
-    UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
-    self.layer.render(in: UIGraphicsGetCurrentContext()!)
-    let image = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    return image!
   }
 }
 
 @MainActor
 final class AddExperienceViewModel: ObservableObject {
-  func saveImage(item: Image) {
+  
+  @Published var gameTitle: String = ""
+  @Published var gameDeveloper: String = ""
+  @Published var gameDescription: String = ""
+  @Published var gameUrl: String = ""
+  @Published var platforms: [String] = []
+  @Published var genres: [String] = []
+  @Published var image: Image?
+  
+  func saveWithImage(item: Image) async throws {
     Task {
-      // Konversi Image menjadi UIImage
-      guard let uiImage = UIImage(systemName: "icloud.and.arrow.up.fill") else {
-        // Handle error jika tidak dapat mengonversi Image ke UIImage
-        print("Gagal mengonversi Image ke UIImage")
-        return
-      }
+      let uiImage = item.asUIImage()
+      //      let pngData = uiImage.pngData()
+      let jpegData = uiImage.jpegData(compressionQuality: 0.1)
+      let (path, name) = try await StorageManager.instance.saveImage(data: jpegData!)
       
-      // Menyimpan UIImage ke galeri
-      PHPhotoLibrary.shared().performChanges {
-        let request = PHAssetChangeRequest.creationRequestForAsset(from: uiImage)
-//        request.placeholderForCreatedAsset?.isHidden = false
-      } completionHandler: { success, error in
-        if success {
-          print("Gambar berhasil disimpan ke galeri.")
-        } else if let error = error {
-          print("Error saat menyimpan gambar: \(error.localizedDescription)")
-        }
-      }
+      print("""
+\n--Success--
+Path: \(path)
+Filename: \(name)
+URL:
+""")
+      
+      
+      try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres, imgName: name, imgUrl: path)
     }
   }
+  
+  func saveData() async throws {
+    if image != nil {
+      try await saveWithImage(item: self.image!)
+    } else {
+      try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres)
+    }
+  }
+  
 }
 
 struct AddExperienceView: View {
   
+  @Environment(\.colorScheme) var colorScheme
   @State private var currentDateAndTime: String = ""
-  @State private var gameTitle: String = ""
-  @State private var gameDeveloper: String = ""
-  @State private var gameDescription: String = ""
-  @State private var gameUrl: String = ""
-  @State private var showingImagePicker: Bool = false
+    @State private var showingImagePicker: Bool = false
   @State private var chosenImage: UIImage?
-  @State private var image: Image?
   @State private var hideRemoveButton: Bool = true
   @State private var addingExperience: Bool = false
   @StateObject private var viewModel = AddExperienceViewModel()
+  @Binding var bottomSheetPosition: BottomSheetPosition
   
   var body: some View {
     ScrollView(.vertical) {
@@ -165,14 +164,14 @@ struct AddExperienceView: View {
             Text("Pick a photo from gallery")
           }
           .isHidden(!hideRemoveButton)
-          image?
+          viewModel.image?
             .resizable()
             .scaledToFit()
         }
         .foregroundColor(Color.gray)
         .frame(maxWidth: .infinity)
         .frame(height: getRect().height * 0.2)
-        .background(Color.gray.opacity(CGFloat(.fieldOpacity)))
+        .background(colorScheme == .light ? Color.white : Color(hex: "1C1C1E"))
         .cornerRadius(10)
         .onTapGesture {
           showingImagePicker.toggle()
@@ -184,7 +183,7 @@ struct AddExperienceView: View {
             Text("Choose Image...")
           }
           Button {
-            image = nil
+            viewModel.image = nil
             hideRemoveButton = true
           } label: {
             Image(systemName: "trash")
@@ -193,24 +192,63 @@ struct AddExperienceView: View {
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
         .isHidden(hideRemoveButton)
-        Text("Game Detail".uppercased())
-          .font(.caption)
-          .foregroundColor(Color(hex: "727272"))
-        TextField("Game title", text: $gameTitle)
-          .modifier(TextFieldStyle())
-        TextField("Developer", text: $gameDeveloper)
-          .modifier(TextFieldStyle())
-        TextField("Description", text: $gameDescription)
-          .modifier(TextFieldStyle())
-        TextField("Homepage/URL", text: $gameUrl)
-          .modifier(TextFieldStyle())
+        Group {
+          Text("Game Detail".uppercased())
+            .font(.caption)
+            .foregroundColor(Color(hex: "727272"))
+          TextField("Game title", text: $viewModel.gameTitle)
+            .modifier(TextFieldStyle())
+          TextField("Developer", text: $viewModel.gameDeveloper)
+            .modifier(TextFieldStyle())
+          TextField("Description", text: $viewModel.gameDescription)
+            .modifier(TextFieldStyle())
+          TextField("Homepage/URL", text: $viewModel.gameUrl)
+            .modifier(TextFieldStyle())
+          NavigationLink(destination: PlatformSelectView(selections: $viewModel.platforms)) {
+            HStack {
+              Text("Platform")
+              Spacer()
+              Text("\(viewModel.platforms.arrayToString())")
+                .frame(width: getRect().width * 0.6, alignment: .trailing)
+              Image(systemName: "chevron.right")
+            }
+            .frame(maxWidth: .infinity)
+            .modifier(TextFieldStyle())
+//            .frame(maxWidth: getRect().width)
+          }
+          .buttonStyle(.plain)
+          NavigationLink(destination: GenreView(genres: $viewModel.genres), label: {
+            HStack {
+              Text("Genre")
+              Spacer()
+              Text("\(viewModel.genres.arrayToString())")
+                .frame(width: getRect().width * 0.6, alignment: .trailing)
+              Image(systemName: "chevron.right")
+            }
+            .frame(maxWidth: .infinity)
+            .modifier(TextFieldStyle())
+          })
+          .buttonStyle(.plain)
+        }
         Text("Created at: \(currentDateAndTime)")
           .font(.caption)
           .foregroundColor(Color(hex: "727272"))
           .frame(maxWidth: .infinity, alignment: .leading)
         Button {
           addingExperience.toggle()
-          viewModel.saveImage(item: image ?? Image(""))
+          Task {
+            do {
+//              try await viewModel.saveImage(item: image ?? Image(""))
+              try await viewModel.saveData()
+              bottomSheetPosition = .hidden
+              DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                addingExperience.toggle()
+              }
+            } catch {
+              print("error adding:", error.localizedDescription)
+              addingExperience.toggle()
+            }
+          }
         } label: {
           if !addingExperience {
             Text("Add experience")
@@ -254,6 +292,6 @@ struct AddExperienceView: View {
   
   func loadImage() {
     guard let inputImage = chosenImage else { return }
-    image = Image(uiImage: inputImage)
+    viewModel.image = Image(uiImage: inputImage)
   }
 }

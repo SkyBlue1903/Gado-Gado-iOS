@@ -29,6 +29,9 @@ final class StorageManager {
       throw URLError(.badServerResponse)
     }
     
-    return (returnedPath, returnedName)
+    let imageUrl = try await imageReference.child(path).downloadURL()
+    
+    
+    return (imageUrl.absoluteString, returnedName)
   }
 }

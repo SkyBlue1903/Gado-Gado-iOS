@@ -187,7 +187,7 @@ struct GameDetailView: View {
       .navigationTitle("Cities Skylines")
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
-        ToolbarItem(placement: .navigationBarTrailing) {
+        ToolbarItem(placement: .primaryAction) {
           Button {
             isShareSheetPresented.toggle()
           } label: {

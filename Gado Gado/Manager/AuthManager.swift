@@ -35,7 +35,7 @@ final class AuthManager {
     fsData["about"] = ""
     fsData["address"] = ""
     //    fsData["birthdate"] = Date()?? maybe // MARK: Birthday are required to verify user
-    fsData["password"] = password
+//    fsData["password"] = password
     fsData["fullName"] = fullname
     //    fsData["gender"] = gender /// Disabled because of inefficient form
     fsData["username"] = username
@@ -105,7 +105,7 @@ final class AuthManager {
     }
     
     try await auth.updatePassword(to: password)
-    try await Firestore.firestore().collection("developer").document(auth.uid).setData(["password": password], merge: true)
+//    try await Firestore.firestore().collection("developer").document(auth.uid).setData(["password": password], merge: true)
     
     try logoutUser()
   }
@@ -127,4 +127,6 @@ final class AuthManager {
     try await Firestore.firestore().collection("developer").document(userId).delete()
     try await auth.delete()
   }
+  
+  
 }

@@ -10,11 +10,14 @@
 		571AED1F2A9CE4E700921EBC /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AED1E2A9CE4E700921EBC /* SignInView.swift */; };
 		5720C1E72A9311A400498B8F /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720C1E62A9311A400498B8F /* Enum.swift */; };
 		5720C1EA2A93190300498B8F /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720C1E92A93190300498B8F /* TextFieldStyle.swift */; };
+		572BC43E2AA836C400E62003 /* GenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572BC43D2AA836C400E62003 /* GenreView.swift */; };
 		57345ABB2A9A1FB9008F1F00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57345ABA2A9A1FB9008F1F00 /* GoogleService-Info.plist */; };
 		57345ABE2A9A2896008F1F00 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57345ABD2A9A2895008F1F00 /* Model.swift */; };
 		57345AC42A9A3BAC008F1F00 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 57345AC32A9A3BAC008F1F00 /* SDWebImageSwiftUI */; };
 		57345AC62A9A4D83008F1F00 /* PlatformIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57345AC52A9A4D83008F1F00 /* PlatformIconView.swift */; };
 		5735EED32A8CF6FC00E3BB0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5735EED22A8CF6FC00E3BB0C /* Extensions.swift */; };
+		573A489F2AA88FB0007D00A1 /* Focuser in Frameworks */ = {isa = PBXBuildFile; productRef = 573A489E2AA88FB0007D00A1 /* Focuser */; };
+		573A48A12AA88FCB007D00A1 /* FocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A48A02AA88FCB007D00A1 /* FocusTextField.swift */; };
 		573E5EE72A9D8655009A27EA /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */; };
 		574269B82A94659600752C81 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574269B72A94659600752C81 /* GameDetailView.swift */; };
 		57438F9D2AA4515B00E98BB3 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57438F9C2AA4515B00E98BB3 /* DeleteAccountView.swift */; };
@@ -37,6 +40,7 @@
 		578838DB2A8CD9AB006A1586 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DA2A8CD9AB006A1586 /* DiscoverView.swift */; };
 		578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DC2A8CD9BE006A1586 /* ProfileView.swift */; };
 		579271742AA32A7100F24217 /* UpdateEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579271732AA32A7100F24217 /* UpdateEmailView.swift */; };
+		57A2761B2AA7707500ECA989 /* PlatformSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A2761A2AA7707500ECA989 /* PlatformSelectView.swift */; };
 		57A9D6232AA57EE80053C471 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9D6222AA57EE80053C471 /* StorageManager.swift */; };
 		57A9D6262AA57F800053C471 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 57A9D6252AA57F800053C471 /* FirebaseStorage */; };
 		57B164222AA180B200E8260B /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B164212AA180B200E8260B /* UpdatePasswordView.swift */; };
@@ -49,10 +53,12 @@
 		571AED1E2A9CE4E700921EBC /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		5720C1E62A9311A400498B8F /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		5720C1E92A93190300498B8F /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
+		572BC43D2AA836C400E62003 /* GenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreView.swift; sourceTree = "<group>"; };
 		57345ABA2A9A1FB9008F1F00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57345ABD2A9A2895008F1F00 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		57345AC52A9A4D83008F1F00 /* PlatformIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformIconView.swift; sourceTree = "<group>"; };
 		5735EED22A8CF6FC00E3BB0C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		573A48A02AA88FCB007D00A1 /* FocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextField.swift; sourceTree = "<group>"; };
 		573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		574269B72A94659600752C81 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		57438F9C2AA4515B00E98BB3 /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
@@ -71,6 +77,8 @@
 		578838DA2A8CD9AB006A1586 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		578838DC2A8CD9BE006A1586 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		579271732AA32A7100F24217 /* UpdateEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailView.swift; sourceTree = "<group>"; };
+		57A276192AA6DBE100ECA989 /* Gado-Gado-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Gado-Gado-Info.plist"; sourceTree = SOURCE_ROOT; };
+		57A2761A2AA7707500ECA989 /* PlatformSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSelectView.swift; sourceTree = "<group>"; };
 		57A9D6222AA57EE80053C471 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		57B164212AA180B200E8260B /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
 		57DE41FF2A926146001344EA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -83,6 +91,7 @@
 			files = (
 				578838D72A8CA43B006A1586 /* FirebaseFirestoreSwift in Frameworks */,
 				57DE41FE2A9240B9001344EA /* BottomSheet in Frameworks */,
+				573A489F2AA88FB0007D00A1 /* Focuser in Frameworks */,
 				578838D12A8CA43B006A1586 /* FirebaseAnalyticsSwift in Frameworks */,
 				57A9D6262AA57F800053C471 /* FirebaseStorage in Frameworks */,
 				57345AC42A9A3BAC008F1F00 /* SDWebImageSwiftUI in Frameworks */,
@@ -103,6 +112,8 @@
 				577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */,
 				5720C1E92A93190300498B8F /* TextFieldStyle.swift */,
 				57345AC52A9A4D83008F1F00 /* PlatformIconView.swift */,
+				57A2761A2AA7707500ECA989 /* PlatformSelectView.swift */,
+				572BC43D2AA836C400E62003 /* GenreView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -138,6 +149,7 @@
 				5735EED22A8CF6FC00E3BB0C /* Extensions.swift */,
 				5720C1E62A9311A400498B8F /* Enum.swift */,
 				57DE41FF2A926146001344EA /* ImagePicker.swift */,
+				573A48A02AA88FCB007D00A1 /* FocusTextField.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -175,6 +187,7 @@
 		578838BB2A8C7C0C006A1586 /* Gado Gado */ = {
 			isa = PBXGroup;
 			children = (
+				57A276192AA6DBE100ECA989 /* Gado-Gado-Info.plist */,
 				578838C02A8C7C0E006A1586 /* Assets.xcassets */,
 				578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */,
 				57345ABA2A9A1FB9008F1F00 /* GoogleService-Info.plist */,
@@ -228,6 +241,7 @@
 				57DE41FD2A9240B9001344EA /* BottomSheet */,
 				57345AC32A9A3BAC008F1F00 /* SDWebImageSwiftUI */,
 				57A9D6252AA57F800053C471 /* FirebaseStorage */,
+				573A489E2AA88FB0007D00A1 /* Focuser */,
 			);
 			productName = "Gado Gado";
 			productReference = 578838B92A8C7C0C006A1586 /* Gado Gado.app */;
@@ -262,6 +276,7 @@
 				57FF05192A9210D200F1A6CD /* XCRemoteSwiftPackageReference "VisualEffectView" */,
 				57DE41FC2A9240B9001344EA /* XCRemoteSwiftPackageReference "BottomSheet" */,
 				57345AC22A9A3BAC008F1F00 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				573A489D2AA88FB0007D00A1 /* XCRemoteSwiftPackageReference "swift-focuser" */,
 			);
 			productRefGroup = 578838BA2A8C7C0C006A1586 /* Products */;
 			projectDirPath = "";
@@ -294,13 +309,16 @@
 				574269B82A94659600752C81 /* GameDetailView.swift in Sources */,
 				574775B12A9B33E40093B930 /* GameManager.swift in Sources */,
 				5720C1EA2A93190300498B8F /* TextFieldStyle.swift in Sources */,
+				572BC43E2AA836C400E62003 /* GenreView.swift in Sources */,
 				57B164222AA180B200E8260B /* UpdatePasswordView.swift in Sources */,
 				578838DB2A8CD9AB006A1586 /* DiscoverView.swift in Sources */,
 				577FB5A02A8E54CF009CA6C1 /* DiscoverCarouselView.swift in Sources */,
 				57345AC62A9A4D83008F1F00 /* PlatformIconView.swift in Sources */,
+				573A48A12AA88FCB007D00A1 /* FocusTextField.swift in Sources */,
 				579271742AA32A7100F24217 /* UpdateEmailView.swift in Sources */,
 				57DE42002A926146001344EA /* ImagePicker.swift in Sources */,
 				574775B32A9B4BE10093B930 /* AuthManager.swift in Sources */,
+				57A2761B2AA7707500ECA989 /* PlatformSelectView.swift in Sources */,
 				5735EED32A8CF6FC00E3BB0C /* Extensions.swift in Sources */,
 				57345ABE2A9A2896008F1F00 /* Model.swift in Sources */,
 				571AED1F2A9CE4E700921EBC /* SignInView.swift in Sources */,
@@ -445,6 +463,7 @@
 				DEVELOPMENT_TEAM = 2W8TC22856;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Gado-Gado-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -478,6 +497,7 @@
 				DEVELOPMENT_TEAM = 2W8TC22856;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Gado-Gado-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -532,6 +552,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		573A489D2AA88FB0007D00A1 /* XCRemoteSwiftPackageReference "swift-focuser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/art-technologies/swift-focuser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 		578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -563,6 +591,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 57345AC22A9A3BAC008F1F00 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		573A489E2AA88FB0007D00A1 /* Focuser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 573A489D2AA88FB0007D00A1 /* XCRemoteSwiftPackageReference "swift-focuser" */;
+			productName = Focuser;
 		};
 		578838CE2A8CA43B006A1586 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

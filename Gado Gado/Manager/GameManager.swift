@@ -8,10 +8,11 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseAuth
 
 final class GameManager {
   
-  static let sharedInstance = GameManager() // Singleton
+  static let instance = GameManager() // Singleton
   private init() { }
   
   func getGamesCollection() async throws -> [Game] {
@@ -40,4 +41,27 @@ final class GameManager {
     return tempArray
   }
   
+  func addExperience(title: String, dev: String, desc: String, urlPage: String, platforms: [String], genres: [String], imgName: String = "", imgUrl: String = "") async throws {
+    guard let auth = Auth.auth().currentUser else {
+      throw URLError(.badServerResponse)
+    }
+    
+    let autoID =  Firestore.firestore().collection("games").document().documentID
+    let saveData: [String: Any] = [
+      "date": Timestamp(),
+      "desc": desc,
+      "developer": dev,
+      "genres": genres,
+      "uid": auth.uid,
+//      "id":
+      "platforms": platforms,
+      "title": title,
+      "urlSite": urlPage,
+      /// for Images and Path are available in `StorageManager.swift
+      "imageFilename": imgName,
+      "image": imgUrl
+    ]
+    print("SAVED EXPERIENCE DOCUMENTID:", autoID)
+    try await Firestore.firestore().collection("games").document(autoID).setData(saveData, merge: true)
+  }
 }

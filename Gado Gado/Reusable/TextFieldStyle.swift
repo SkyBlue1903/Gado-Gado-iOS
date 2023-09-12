@@ -43,11 +43,12 @@ struct CustomButtonStyle: View {
   var titleInProgress: String?
   var color: Color?
   var inProgress: Bool?
+  var isDisabled: Bool? /// Use this parameter if using custom `Color`
   
   var body: some View {
     HStack(spacing: 10) {
       Text("\(inProgress ?? false ? titleInProgress ?? "" : title ?? "")")
-        .foregroundColor(inProgress ?? false ? Color.gray : color ?? Color.accentColor)
+        .foregroundColor(isDisabled ?? false ? Color.gray : (inProgress ?? false ? Color.gray : color ?? Color.accentColor))
         .padding(.leading)
       ProgressView()
         .isHidden(inProgress ?? false ? false : true)

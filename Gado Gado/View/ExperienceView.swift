@@ -117,15 +117,6 @@ final class AddExperienceViewModel: ObservableObject {
       //      let pngData = uiImage.pngData()
       let jpegData = uiImage.jpegData(compressionQuality: 0.1)
       let (path, name) = try await StorageManager.instance.saveImage(data: jpegData!)
-      
-      print("""
-\n--Success--
-Path: \(path)
-Filename: \(name)
-URL:
-""")
-      
-      
       try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres, imgName: name, imgUrl: path)
     }
   }
@@ -144,7 +135,7 @@ struct AddExperienceView: View {
   
   @Environment(\.colorScheme) var colorScheme
   @State private var currentDateAndTime: String = ""
-    @State private var showingImagePicker: Bool = false
+  @State private var showingImagePicker: Bool = false
   @State private var chosenImage: UIImage?
   @State private var hideRemoveButton: Bool = true
   @State private var addingExperience: Bool = false
@@ -214,7 +205,7 @@ struct AddExperienceView: View {
             }
             .frame(maxWidth: .infinity)
             .modifier(TextFieldStyle())
-//            .frame(maxWidth: getRect().width)
+            //            .frame(maxWidth: getRect().width)
           }
           .buttonStyle(.plain)
           NavigationLink(destination: GenreView(genres: $viewModel.genres), label: {
@@ -238,7 +229,6 @@ struct AddExperienceView: View {
           addingExperience.toggle()
           Task {
             do {
-//              try await viewModel.saveImage(item: image ?? Image(""))
               try await viewModel.saveData()
               bottomSheetPosition = .hidden
               DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {

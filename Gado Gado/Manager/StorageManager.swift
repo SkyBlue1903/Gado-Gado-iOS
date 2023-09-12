@@ -18,11 +18,11 @@ final class StorageManager {
     storage.child("app").child("images")
   }
   
-  func saveImage(data: Data) async throws -> (path: String, name: String) {
+  func saveImage(data: Data, userId: String = "") async throws -> (path: String, name: String) {
     let meta = StorageMetadata()
     meta.contentType = "image/jpeg"
     
-    let path = "\(UUID().uuidString).jpeg"
+    let path = "\(userId.isEmpty ? UUID().uuidString.lowercased() : userId).jpeg"
     let returnedMetadata = try await imageReference.child(path).putDataAsync(data, metadata: meta)
     
     guard let returnedPath = returnedMetadata.path, let returnedName = returnedMetadata.name else {
@@ -33,5 +33,10 @@ final class StorageManager {
     
     
     return (imageUrl.absoluteString, returnedName)
+  }
+  
+  func delImgProf() async throws {
+    let auth = try await AuthManager.instance.getAuthUser()
+    try await imageReference.child(auth.uid + ".jpeg").delete()
   }
 }

@@ -63,6 +63,21 @@ final class AuthManager {
     return try await getFSUser(user: result)
   }
   
+  func editProfile(username: String, fullname: String, about: String, address: String, age: String, gender: String) async throws {
+    let auth = try getAuthUser()
+    
+    let data: [String: Any] = [
+      "username": username,
+      "fullName": fullname,
+      "about": about,
+      "address": address,
+      "age": age,
+      "gender": gender
+    ]
+    
+    try await Firestore.firestore().collection("developer").document(auth.uid).setData(data, merge: true)
+  }
+  
   func getAuthUser() throws -> AuthUser {
     guard let auth = Auth.auth().currentUser else {
       throw URLError(.badServerResponse)
@@ -86,9 +101,9 @@ final class AuthManager {
     let about = dataFetched["about"] as? String
     let address = dataFetched["address"] as? String
     let gender = dataFetched["gender"] as? String
-    let birthdate = dataFetched["birthdate"] as? String
+    let age = dataFetched["age"] as? String
     let photoUrl = dataFetched["imageProfile"] as? String
-    return FSUser(uid: id, email: email, photoUrl: photoUrl, fullname: fullname, username: usernameAt, about: about, address: address, gender: gender, birthdate: birthdate)
+    return FSUser(uid: id, email: email, photoUrl: photoUrl, fullname: fullname, username: usernameAt, about: about, address: address, gender: gender, age: age)
   }
   
   func logoutUser() throws {
@@ -103,7 +118,6 @@ final class AuthManager {
     guard let auth = Auth.auth().currentUser else {
       throw URLError(.badServerResponse)
     }
-    
     try await auth.updatePassword(to: password)
 //    try await Firestore.firestore().collection("developer").document(auth.uid).setData(["password": password], merge: true)
     
@@ -128,5 +142,27 @@ final class AuthManager {
     try await auth.delete()
   }
   
+  func addProfPic(path: String, filename: String) async throws {
+    guard let auth = Auth.auth().currentUser else {
+      throw URLError(.badServerResponse)
+    }
+    let data: [String: Any] = [
+      "imageProfile": path,
+      "imageProfileFilename": filename
+    ]
+    try await Firestore.firestore().collection("developer").document(auth.uid).setData(data, merge: true)
+  }
   
+  func deleteProfPic() async throws {
+    guard let auth = Auth.auth().currentUser else {
+      throw URLError(.badServerResponse)
+    }
+    
+    let data: [String: Any] = [
+      "imageProfile": FieldValue.delete(),
+      "imageProfileFilename": FieldValue.delete()
+    ]
+    try await Firestore.firestore().collection("developer").document(auth.uid).setData(data, merge: true)
+    try await StorageManager.instance.delImgProf()
+  }
 }

@@ -53,7 +53,7 @@ final class GameManager {
       "developer": dev,
       "genres": genres,
       "uid": auth.uid,
-//      "id":
+      "id": autoID,
       "platforms": platforms,
       "title": title,
       "urlSite": urlPage,
@@ -61,7 +61,6 @@ final class GameManager {
       "imageFilename": imgName,
       "image": imgUrl
     ]
-    print("SAVED EXPERIENCE DOCUMENTID:", autoID)
     try await Firestore.firestore().collection("games").document(autoID).setData(saveData, merge: true)
   }
 }

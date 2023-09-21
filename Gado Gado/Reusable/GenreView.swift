@@ -10,7 +10,6 @@ import Focuser
 
 struct GenreView: View {
   
-  @FocusStateLegacy var focusedField: FormFields?
   @Binding var genres: [String]
   @State private var addGenre: String = ""
   @State var fieldFocus: [Bool] = [false]

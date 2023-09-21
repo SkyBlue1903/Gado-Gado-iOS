@@ -7,29 +7,53 @@
 
 import SwiftUI
 import VisualEffectView
+import SDWebImageSwiftUI
 
 struct DiscoverCarouselView: View {
   
-  @State private var index: Int = 1
+  @State private var index: Int = 0
   @State private var showDetail: Bool = false
+  var items: [Game]
   
   var body: some View {
     VStack(alignment: .center, spacing: 0) {
       TabView(selection: $index) {
-        ForEach(1...3, id: \.self) { each in
+        ForEach(items.indices, id: \.self) { each in
           ZStack {
-            Rectangle()
-              .fill(.blue)
-            Text("Page: \(each)")
-              .foregroundColor(.white)
-            NavigationLink(destination: GameDetailView(), isActive: $showDetail) {
+            Color.gray
+              .opacity(0.2)
+            ProgressView()
+            WebImage(url: URL(string: items[each].image ?? ""))
+              .resizable()
+              .scaledToFill()
+              .clipped()
+            ZStack(alignment: .leading) {
+              VisualEffect(colorTint: .black, colorTintAlpha: 0.6, blurRadius: 18, scale: 1)
+              NavigationLink(destination: GameDetailView(currentGame: items[each]), label: {
+                HStack {
+                  VStack(alignment: .leading, spacing: 5) {
+                    Text(items[each].title ?? "")
+                      .lineLimit(1)
+                      .font(.system(size: UIFont.preferredFont(forTextStyle: .headline).pointSize, weight: .bold))
+                    if items[each].platforms != nil {
+                      PlatformIconView(platforms: items[each].platforms)
+                        .font(.caption)
+                    }
+                  }
+                  Spacer()
+                  Image(systemName: "chevron.right")
+                }
+              })
+              .foregroundColor(Color.white)
+              .padding(.horizontal)
             }
-            .hidden()
+            .frame(maxWidth:getRect().width - 32)
+            .frame(height: 70)
+            .cornerRadius(10)
+            .frame(maxHeight: .infinity, alignment: .bottom)
+            .offset(y: -getRect().height * 0.04)
           }
-          .onTapGesture {
-            print("IAM PRESSED AT:", index)
-            showDetail.toggle()
-          }
+          .frame(width: getRect().width)
         }
       }
       .tabViewStyle(.page)
@@ -40,7 +64,7 @@ struct DiscoverCarouselView: View {
 struct DiscoverCarouselView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      DiscoverCarouselView()
+      DiscoverCarouselView(items: [Game(id: "1", title: "Cities Skylines II", urlSite: "", image: "", imageFilename: "", date: Date(), genres: ["Simulation"], platforms: ["Windows"], developer: "Paradox Interative", desc: "", engines: ["Unreal Engine"])])
     }
   }
 }

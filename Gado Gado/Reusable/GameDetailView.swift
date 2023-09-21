@@ -89,7 +89,6 @@ struct GameDetailView: View {
             .fill(Color.white)
             .frame(width: UIScreen.main.bounds.width * 0.075)
             .overlay(Image(systemName: "chevron.left"))
-            .foregroundColor(Color(.primaryApp))
             .opacity(btnHidden == true ? 0 : 1)
             .animation(.default, value: btnHidden == true ? 0 : 1)
             .padding(.top, 8)
@@ -179,7 +178,7 @@ struct GameDetailView: View {
       .edgesIgnoringSafeArea(.top)
       .onAppear {
         statusBarHeight = UIApplication.shared.windows.first!.safeAreaInsets.top
-        btnHidden = false
+//        btnHidden = false
       }
       .sheet(isPresented: $isShareSheetPresented, content: {
         TextShareSheetView(activityItems: ["Hey there! I've got some epic news for you – this incredible game called \"\(currentGame?.title ?? "")\" that's totally awesome! And guess what? It's available on \(convertArrayToString(currentGame?.platforms ?? ["some"])) platforms. Time to level up this  \(convertArrayToString(currentGame?.genres ?? ["action"])), so what are you waiting for?"])
@@ -215,7 +214,13 @@ struct GameDetailView: View {
 struct GameDetailView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      GameDetailView(currentGame: Game(id: "123", title: "Cities Skylines II", urlSite: "https://www.paradoxinteractive.com", image: "sample-header", imageFilename: "123", date: Date(), genres: ["Simulation", "Strategy"], platforms: ["Xbox", "PS5", "Windows"], developer: "Paradox Interactive", desc: "Raise a city from the ground up and transform it into a thriving metropolis with the most realistic city builder ever. Push your creativity and problem-solving to build on a scale you've never experienced. With deep simulation and a living economy, this is world-building without limits.\n\n You Make It Happen. You Make It Yours. You Make Cities. Raise a city from the ground up and transform it into a thriving metropolis with the most realistic city builder ever. Push your creativity and problem-solving to build on a scale you've never experienced. With deep simulation and a living economy, this is world-building without limits.\n\n You Make It Happen. You Make It Yours. You Make Cities. ", engines: ["Unreal Engine 5"]))
+      GameDetailView(currentGame: Game(id: "123", title: "Cities Skylines II", urlSite: "https://www.paradoxinteractive.com", image: "sample-header", imageFilename: "123", date: Date(), genres: ["Simulation", "Strategy"], platforms: ["Xbox", "PS5", "Windows"], developer: "Paradox Interactive", desc: """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula faucibus sodales. Sed a urna varius, laoreet tortor ut, luctus dui. Aliquam erat volutpat. Sed auctor tellus sapien, vel ultrices elit vulputate vel. Suspendisse venenatis justo nec lectus laoreet, ac sodales diam tempor. In hac habitasse platea dictumst. Ut nibh lacus, sodales nec sapien sit amet, accumsan blandit justo. Ut diam massa, placerat ac condimentum sed, mollis eu mi. Etiam sit amet vulputate enim. Ut sodales velit sit amet metus finibus viverra. Vivamus pharetra justo at tristique iaculis. Vestibulum tempor gravida bibendum.
+
+Aenean mi massa, molestie at suscipit et, interdum et leo. Suspendisse quam neque, pulvinar in tellus sit amet, varius pulvinar sapien. Cras viverra nec velit imperdiet volutpat. In nulla arcu, dictum et imperdiet in, tempor quis purus. Maecenas sagittis, urna vitae eleifend imperdiet, ante velit interdum ipsum, non vehicula magna massa eu risus. Mauris eu elit turpis. Phasellus ut pellentesque justo, vel venenatis augue. Donec eu ante ultricies leo pretium facilisis eget sit amet eros. Integer suscipit sit amet orci at sagittis. Etiam arcu nunc, sodales laoreet gravida in, ullamcorper at est. Sed porttitor iaculis ipsum vel convallis. Mauris euismod risus et sapien molestie fermentum lobortis quis mauris. Integer et malesuada erat. Nullam vel cursus est, nec porta urna.
+
+Aliquam at erat pulvinar, sollicitudin massa et, interdum metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec feugiat lectus eu maximus egestas. Duis auctor erat molestie justo interdum sagittis. Nam ac odio in purus viverra ultrices id nec nibh. Vivamus pulvinar diam eu augue lobortis, sed fermentum nisi condimentum. Aenean quis ex tortor.
+""", engines: ["Unreal Engine 5"]))
     }
   }
 }

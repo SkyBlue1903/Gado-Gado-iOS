@@ -1,107 +1,16 @@
 //
-//  ExperienceView.swift
+//  EditExperienceView.swift
 //  Gado Gado
 //
-//  Created by Erlangga Anugrah Arifin on 16/08/23.
+//  Created by Erlangga Anugrah Arifin on 18/09/23.
 //
 
 import SwiftUI
 import BottomSheet
-import PhotosUI
-import UIKit
-
-struct ExperienceView: View {
-  
-  @Environment(\.colorScheme) var colorScheme
-  @State private var bottomSheetPosition: BottomSheetPosition = .absoluteTop(500)
-  @State private var navTitle: String = ""
-  
-  var body: some View {
-    NavigationView {
-      GeometryReader { geometry in
-        ScrollView(.vertical) {
-          ForEach(1..<10, id: \.self) { each in
-            NavigationLink(destination: GameDetailView()) {
-              HStack(spacing: 16.0) {
-                Image("sample-header")
-                  .resizable()
-                  .scaledToFill()
-                  .frame(width: 125)
-                  .clipped()
-                VStack() {
-                  Group {
-                    Text("Cities Skylines")
-                      .font(.headline)
-                      .lineLimit(2)
-                      .multilineTextAlignment(.leading)
-                    Text("Game description")
-                      .font(.callout)
-                      .foregroundColor(.gray)
-                      .lineLimit(2)
-                      .multilineTextAlignment(.leading)
-                  }
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                  Spacer()
-                  Text("Edited 4 month ago")
-                    .font(.caption2)
-                    .foregroundColor(.gray)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-                .padding(.vertical)
-                Spacer()
-                //                .padding(.horizontal)
-              }
-              .frame(height: geometry.size.height * 0.2)
-              .frame(maxWidth: .infinity)
-              .background(colorScheme == .dark ? Color(hex: "202020") : Color.white)
-              .clipShape(RoundedRectangle(cornerRadius: 10))
-              .shadow(radius: 5)
-            }
-            .padding(.vertical, 6)
-          }
-          .padding([.horizontal, .bottom])
-        }
-        
-      }
-      //        .opacity(bottomSheetPosition == .hidden ? 1 : 0)
-      .navigationTitle("Experience")
-      .toolbar {
-        ToolbarItem(placement: .primaryAction) {
-          //            Image(systemName: "plus")
-          Button {
-            // ACTION OPEN SHEET
-            bottomSheetPosition = .relativeTop(0.6)
-          } label: {
-            Image(systemName: "plus")
-          }
-        }
-      }
-      
-      .bottomSheet(bottomSheetPosition: self.$bottomSheetPosition, switchablePositions: [.relativeTop(0.3), .relativeTop(0.6), .relativeTop(0.85)], title: "Add Experience") {
-        ///** CONTENT HERE
-        AddExperienceView(bottomSheetPosition: $bottomSheetPosition)
-      }
-      .enableTapToDismiss(true)
-      .showCloseButton(true)
-      .showDragIndicator(true)
-      .enableBackgroundBlur(true)
-      .enableSwipeToDismiss(true)
-      
-    }
-    
-  }
-  
-  
-}
-
-struct ExperienceView_Previews: PreviewProvider {
-  static var previews: some View {
-    ExperienceView()
-  }
-}
+import SDWebImageSwiftUI
 
 @MainActor
-final class AddExperienceViewModel: ObservableObject {
+final class EditExperienceViewModel: ObservableObject {
   
   @Published var gameTitle: String = ""
   @Published var gameDeveloper: String = ""
@@ -110,14 +19,17 @@ final class AddExperienceViewModel: ObservableObject {
   @Published var platforms: [String] = []
   @Published var genres: [String] = []
   @Published var image: Image?
+  @Published var dateModified: Date = Date()
+  @Published var gameId: String = ""
   
   func saveWithImage(item: Image) async throws {
     Task {
       let uiImage = item.asUIImage()
       //      let pngData = uiImage.pngData()
-      let jpegData = uiImage.jpegData(compressionQuality: 0.1)
-      let (path, name) = try await StorageManager.instance.saveImage(data: jpegData!)
-      try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres, imgName: name, imgUrl: path)
+      let jpegData = uiImage.jpegData(compressionQuality:1)
+      let (path, name) = try await StorageManager.instance.saveImgProf(data: jpegData!)
+//      try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres, imgName: name, imgUrl: path)
+      try await GameManager.instance.editExperience(gameId: self.gameId, title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres, imgName: name, imgUrl: path)
     }
   }
   
@@ -129,18 +41,28 @@ final class AddExperienceViewModel: ObservableObject {
     }
   }
   
+  func deleteData(gameId: String, withImage: Bool, imgFilename: String = "") async throws {
+    try await GameManager.instance.delExperience(gameId: gameId, withImage: withImage, imgFilename: imgFilename)
+  }
+  
+  func deleteImage(gameId: String, imgFilename: String) async throws {
+    try await GameManager.instance.delImgExp(gameId: gameId, imgFilename: imgFilename, delRefOnly: true)
+  }
 }
 
-struct AddExperienceView: View {
+struct EditExperienceView: View {
   
   @Environment(\.colorScheme) var colorScheme
   @State private var currentDateAndTime: String = ""
   @State private var showingImagePicker: Bool = false
   @State private var chosenImage: UIImage?
-  @State private var hideRemoveButton: Bool = true
-  @State private var addingExperience: Bool = false
-  @StateObject private var viewModel = AddExperienceViewModel()
+  @State private var hideRemoveButton: Bool = false
+  @State private var editingExperience: Bool = false
+  @State private var deletingExperience: Bool = false
+  @StateObject private var viewModel = EditExperienceViewModel()
   @Binding var bottomSheetPosition: BottomSheetPosition
+  
+  var data: Game
   
   var body: some View {
     ScrollView(.vertical) {
@@ -154,10 +76,19 @@ struct AddExperienceView: View {
               .font(.largeTitle)
             Text("Pick a photo from gallery")
           }
-          .isHidden(!hideRemoveButton)
-          viewModel.image?
-            .resizable()
-            .scaledToFit()
+          .isHidden(!hideRemoveButton && viewModel.image != nil)
+            WebImage(url: URL(string: data.image ?? ""))
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+              .clipped()
+              .opacity(viewModel.image == nil && !hideRemoveButton ? 1 : 0)
+            viewModel.image?
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+              .clipped()
+//          }
+          
+          let _ = print("VM IMAGE:", viewModel.image)
         }
         .foregroundColor(Color.gray)
         .frame(maxWidth: .infinity)
@@ -171,7 +102,7 @@ struct AddExperienceView: View {
           Button {
             showingImagePicker.toggle()
           } label: {
-            Text("Choose Image...")
+            Text("Change Image...")
           }
           Button {
             viewModel.image = nil
@@ -182,7 +113,7 @@ struct AddExperienceView: View {
           }
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
-        .isHidden(hideRemoveButton)
+        .isHidden(hideRemoveButton/*&& data.image?.isEmpty ?? false*/)
         Group {
           Text("Game Detail".uppercased())
             .font(.caption)
@@ -221,38 +152,64 @@ struct AddExperienceView: View {
           })
           .buttonStyle(.plain)
         }
-        Text("Created at: \(currentDateAndTime)")
+        Text("Last modified at: \(currentDateAndTime)")
           .font(.caption)
           .foregroundColor(Color(hex: "727272"))
           .frame(maxWidth: .infinity, alignment: .leading)
         Button {
-          addingExperience.toggle()
+          editingExperience.toggle()
           Task {
             do {
+              try await viewModel.deleteImage(gameId: data.id, imgFilename: data.imageFilename ?? "")
               try await viewModel.saveData()
-              bottomSheetPosition = .hidden
-              DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                addingExperience.toggle()
+              DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                editingExperience.toggle()
+                bottomSheetPosition = .hidden
               }
             } catch {
               print("error adding:", error.localizedDescription)
-              addingExperience.toggle()
+              editingExperience.toggle()
+            }
+          }
+          ///  MARK: PLEASE EDIT `HERE!!
+        } label: {
+          if !editingExperience {
+            Text("Save experience")
+              .modifier(TextFieldButtonStyle(isDisabled: $editingExperience))
+          } else {
+            ProgressView()
+              .modifier(TextFieldButtonStyle(isDisabled: $editingExperience))
+          }
+        }
+        .disabled(deletingExperience || editingExperience || checkField())
+        .padding(.top, getRect().height * 0.03)
+        Button {
+          deletingExperience = true
+          Task {
+            do {
+              try await viewModel.deleteData(gameId: data.id, withImage: true, imgFilename: data.imageFilename ?? "")
+              DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                editingExperience.toggle()
+                bottomSheetPosition = .hidden
+                deletingExperience = true
+              }
             }
           }
         } label: {
-          if !addingExperience {
-            Text("Add experience")
-              .modifier(TextFieldButtonStyle(isDisabled: $addingExperience))
-          } else {
+          if deletingExperience {
             ProgressView()
-              .modifier(TextFieldButtonStyle(isDisabled: $addingExperience))
+              .frame(maxWidth: .infinity)
+              .padding(.horizontal)
+          } else {
+            Text("Delete experience")
+              .foregroundColor(Color.red)
+              .frame(maxWidth: .infinity)
+              .padding(.horizontal)
           }
         }
-        .disabled(addingExperience ? true : false)
-        .padding(.top, getRect().height * 0.03)
+        .disabled(deletingExperience || editingExperience)
       }
-      .padding(.horizontal)
-      .padding(.bottom, getRect().height * 0.2)
+      .padding([.horizontal, .bottom])
       .onChange(of: chosenImage) { _ in
         loadImage()
         if chosenImage != nil {
@@ -263,7 +220,7 @@ struct AddExperienceView: View {
         ImagePicker(image: $chosenImage)
       }
       .onAppear {
-        let currentDate = Date()
+        let currentDate = data.date ?? Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd"
         let date = dateFormatter.string(from: currentDate)
@@ -276,12 +233,43 @@ struct AddExperienceView: View {
         dateFormatter.dateFormat = "mm"
         let mins = dateFormatter.string(from: currentDate)
         self.currentDateAndTime = "\(date) \(month) \(year) @ \(hour):\(mins)"
+        
+        //        viewModel.image = WebImage(URL(string: data?.image ?? ""))
+        viewModel.gameTitle = data.title ?? ""
+        viewModel.gameDeveloper = data.developer ?? ""
+        viewModel.gameDescription = data.desc ?? ""
+        viewModel.gameUrl = data.urlSite ?? ""
+        viewModel.platforms = data.platforms ?? []
+        viewModel.genres = data.genres ?? []
+        viewModel.gameId = data.id
+        //        viewModel.dateModified = data.date ?? Date()
       }
     }
+    Rectangle()
+      .foregroundColor(colorScheme == .light ? Color(hex: "F5F5F5") : Color(hex: "292929"))
+      .frame(width: getRect().width, height: 50 + ExtensionManager.instance.getHomeBarHeight())
   }
   
   func loadImage() {
     guard let inputImage = chosenImage else { return }
     viewModel.image = Image(uiImage: inputImage)
   }
+  
+  func checkField() -> Bool {
+    let image = viewModel.image == nil
+    let title = viewModel.gameTitle == data.title ?? ""
+    let dev = viewModel.gameDeveloper == data.developer ?? ""
+    let desc = viewModel.gameDescription == data.desc ?? ""
+    let url = viewModel.gameUrl == data.urlSite ?? ""
+    let plats = viewModel.platforms == data.platforms ?? []
+    let genres = viewModel.genres == data.genres ?? []
+    print("""
+Current image: \(viewModel.image)
+Current bool: \(image)
+""")
+    return (title && dev && desc && url && plats && genres && image)
+    
+    //      MARK: CEK BAGIAN SINI!!!!
+  }
 }
+

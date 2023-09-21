@@ -106,7 +106,6 @@ struct UpdatePasswordView: View {
         }
         .navigationTitle("Update Password")
         .navigationBarTitleDisplayMode(.inline)
-        .accentColor(Color(.primaryApp))
         .onAppear {
           Task {
             let auth = try await AuthManager.instance.getAuthUser()

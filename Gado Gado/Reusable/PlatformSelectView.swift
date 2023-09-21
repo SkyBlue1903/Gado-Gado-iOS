@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlatformSelectView: View {
-  @State private var items: [String] = ["iOS", "iPadOS", "macOS", "Android", "Windows", "Linux", "HTML 5 / Browser", "Xbox Series X", "Xbox Series S", "Xbox One", "Xbox 360", "PlayStation 5", "PlayStation 4", "PlayStation 3", "Nintendo Switch", "Nintendo Wii U", "Nintendo Wii", "Arcade Game"]
+  @State private var items: [String] = ["iOS", "iPadOS", "macOS", "Android", "Windows", "Linux", "HTML 5", "Xbox Series X", "Xbox Series S", "Xbox One", "Xbox 360", "PlayStation 5", "PlayStation 4", "PlayStation 3", "Nintendo Switch", "Nintendo Wii U", "Nintendo Wii", "Arcade Game"]
   @Binding var selections: [String]
   
   var body: some View {
@@ -49,7 +49,7 @@ struct MultipleSelectionRow: View {
   var body: some View {
     Button(action: self.action) {
       HStack {
-        Text(self.title)
+        Text(title == "HTML 5" ? "HTML 5/Browser/Embed Browser Game" : self.title)
           .foregroundColor(colorScheme == .light ? Color.black : Color.white)
         if self.isSelected {
           Spacer()

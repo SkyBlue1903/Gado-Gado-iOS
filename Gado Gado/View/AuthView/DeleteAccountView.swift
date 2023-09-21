@@ -103,7 +103,6 @@ struct DeleteAccountView: View {
         }
         .navigationTitle("Delete Account")
         .navigationBarTitleDisplayMode(.inline)
-        .accentColor(Color(.primaryApp))
         .onAppear {
           Task {
             do {

@@ -83,6 +83,10 @@ extension View {
       action()
     }
   }
+  
+  func border(width: CGFloat, edges: [Edge], color: Color) -> some View {
+    overlay(EdgeBorder(width: width, edges: edges).foregroundColor(color))
+  }
 }
 
 extension CGFloat {
@@ -204,5 +208,70 @@ extension Array where Element == String {
       return result
     }
   }
+  
+  func withSeparator(_ separator: String) -> String {
+    return self.map {
+      String(describing: $0) }.joined(separator: ",\(separator) ")
+  }
 }
 
+class ExtensionManager {
+  
+  static let instance = ExtensionManager()
+  private init() { }
+  
+  func relativeTime(from date: Date) -> String {
+    let calendar = Calendar.current
+    let now = Date()
+    
+    let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date, to: now)
+    
+    if let year = components.year, year > 0 {
+      return "\(year) year\(year > 1 ? "s" : "") ago"
+    } else if let month = components.month, month > 0 {
+      return "\(month) month\(month > 1 ? "s" : "") ago"
+    } else if let day = components.day, day > 0 {
+      return "\(day) day\(day > 1 ? "s" : "") ago"
+    } else if let hour = components.hour, hour > 0 {
+      return "\(hour) hour\(hour > 1 ? "s" : "") ago"
+    } else if let minute = components.minute, minute > 0 {
+      return "\(minute) minute\(minute > 1 ? "s" : "") ago"
+    } else {
+      return "Just now"
+    }
+  }
+  
+  
+  func randomArray<T>(_ array: [T], count: Int) -> [T] {
+    var shuffledArray = array
+    shuffledArray.shuffle()
+    
+    return Array(shuffledArray.prefix(count))
+  }
+  
+  func getHomeBarHeight() -> CGFloat {
+    if #available(iOS 11.0, *) {
+      let window = UIApplication.shared.keyWindow
+      if let bottomPadding = window?.safeAreaInsets.bottom {
+        return bottomPadding
+      }
+    }
+    return 0.0
+  }
+}
+
+struct EdgeBorder: Shape {
+  var width: CGFloat
+  var edges: [Edge]
+  
+  func path(in rect: CGRect) -> Path {
+    edges.map { edge -> Path in
+      switch edge {
+      case .top: return Path(.init(x: rect.minX, y: rect.minY, width: rect.width, height: width))
+      case .bottom: return Path(.init(x: rect.minX, y: rect.maxY - width, width: rect.width, height: width))
+      case .leading: return Path(.init(x: rect.minX, y: rect.minY, width: width, height: rect.height))
+      case .trailing: return Path(.init(x: rect.maxX - width, y: rect.minY, width: width, height: rect.height))
+      }
+    }.reduce(into: Path()) { $0.addPath($1) }
+  }
+}

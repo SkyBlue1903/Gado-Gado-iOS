@@ -53,7 +53,7 @@ final class ProfileViewModel: ObservableObject {
       let auth = try AuthManager.instance.getAuthUser()
       let uiImage = item.asUIImage()
       let jpegData = uiImage.jpegData(compressionQuality: 0.1)
-      let (path, name) = try await StorageManager.instance.saveImage(data: jpegData!, userId: auth.uid)
+      let (path, name) = try await StorageManager.instance.saveImgProf(data: jpegData!, userId: auth.uid)
       try await AuthManager.instance.addProfPic(path: path, filename: name)
     }
   }
@@ -88,8 +88,8 @@ struct ProfileView: View {
     //    ScrollView(.vertical) {
     VStack(alignment: .leading) {
       ZStack {
-        Image("sample-header")
-          .resizable()
+        Rectangle()
+          .fill(Color(hex: "4E3728"))
           .frame(height: getRect().height * 0.3)
         Button {
           print("Header PPicker")
@@ -300,7 +300,6 @@ struct ProfileView: View {
       }
       .offset(y: -getRect().height * 0.1)
       .padding(.horizontal, 16)
-      Spacer()
     }
     .frame(minHeight: getRect().height * 0.7)
     .background(colorScheme == .light ? Color(hex: "#F2F2F7") : Color.black)

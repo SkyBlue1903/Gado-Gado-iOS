@@ -11,14 +11,12 @@ import FirebaseStorage
 final class StorageManager {
   static let instance = StorageManager()
   private init() { }
-  
   private let storage = Storage.storage().reference()
-  
   private var imageReference: StorageReference {
     storage.child("app").child("images")
   }
   
-  func saveImage(data: Data, userId: String = "") async throws -> (path: String, name: String) {
+  func saveImgProf(data: Data, userId: String = "") async throws -> (path: String, name: String) {
     let meta = StorageMetadata()
     meta.contentType = "image/jpeg"
     
@@ -28,10 +26,7 @@ final class StorageManager {
     guard let returnedPath = returnedMetadata.path, let returnedName = returnedMetadata.name else {
       throw URLError(.badServerResponse)
     }
-    
     let imageUrl = try await imageReference.child(path).downloadURL()
-    
-    
     return (imageUrl.absoluteString, returnedName)
   }
   

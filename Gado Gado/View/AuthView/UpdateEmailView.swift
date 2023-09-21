@@ -116,7 +116,6 @@ struct UpdateEmailView: View {
         }
         .navigationTitle("Update Email")
         .navigationBarTitleDisplayMode(.inline)
-        .accentColor(Color(.primaryApp))
         .onAppear {
           Task {
             do {

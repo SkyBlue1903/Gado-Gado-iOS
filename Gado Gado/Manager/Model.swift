@@ -22,6 +22,19 @@ struct Game: Hashable, Codable {
   var engines: [String]?
 }
 
+struct Article: Hashable, Codable {
+  var id: String
+  var content: String?
+  var date: Date?
+  var imageFilename: String?
+  var image: String?
+  var title: String?
+  var game: String?
+  var author: String?
+  var platforms: [String]?
+  var subtitle: String?
+}
+
 struct AuthUser {
   let uid: String
   let email: String?

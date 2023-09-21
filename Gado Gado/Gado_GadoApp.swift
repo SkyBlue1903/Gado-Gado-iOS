@@ -48,7 +48,7 @@ struct Gado_GadoApp: App {
             .tag(RootTab.profile)
         }
       }
-      .accentColor(Color(.primaryApp))
+//      .accentColor(Color(.primaryApp))
     }
   }
 }

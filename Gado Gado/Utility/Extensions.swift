@@ -41,7 +41,7 @@ extension Color {
       self = Color(hex: "202020")
     case .primaryApp:
       self = Color(hex: "7DCE13") /// Mint green
-//      self = Color(hex: "4F3728") /// Color brown
+                                  //      self = Color(hex: "4F3728") /// Color brown
     case .secondaryApp:
       self = Color(hex: "00000") // MARK: Brown color needs to fix soon
     }
@@ -154,7 +154,7 @@ extension UIDevice {
       case "iPhone14,8":                  return "iPhone 14 Plus"
       case "iPhone15,2":                  return "iPhone 14 Pro"
       case "iPhone15,3":                  return "iPhone 14 Pro Max"
-
+      case "iPhone16,2":                  return "iPhone 15 Pro Max"
       case "i386", "x86_64", "arm64":     return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))"
       default:                            return identifier
       }

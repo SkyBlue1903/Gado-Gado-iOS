@@ -58,13 +58,7 @@ struct GenreView: View {
   }
   
   func delete(at offsets: IndexSet) {
-    print("REMOVE at:", offsets)
-    //    if genres.count < 1 {
-    //      genres.insert("", at: 0)
-    //      genres.remove(atOffsets: offsets)
-    //    } else {
     genres.remove(atOffsets: offsets)
-    //    }
   }
   
   func add(_ item: String) {

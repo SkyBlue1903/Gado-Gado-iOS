@@ -19,23 +19,38 @@ final class AddExperienceViewModel: ObservableObject {
   @Published var genres: [String] = []
   @Published var image: Image?
   
-  func saveWithImage(item: Image) async throws {
+  func saveWithImage(item: Image, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
     Task {
-      let uiImage = item.asUIImage()
-      //      let pngData = uiImage.pngData()
-      let jpegData = uiImage.jpegData(compressionQuality:1)
-      let (path, name) = try await StorageManager.instance.saveImgProf(data: jpegData!)
-      try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres, imgName: name, imgUrl: path)
+      do {
+        let uiImage = item.asUIImage()
+        let jpegData = uiImage.jpegData(compressionQuality: 1)
+        let (path, name) = try await StorageManager.instance.saveImgProf(data: jpegData!)
+        try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres, imgName: name, imgUrl: path)
+        
+        // Call the success completion handler
+        success()
+      } catch {
+        // Call the failure completion handler with the encountered error
+        failure(error)
+      }
     }
   }
   
-  func saveData() async throws {
-    if image != nil {
-      try await saveWithImage(item: self.image!)
-    } else {
-      try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres)
-    }
-  }
+//  func saveData() async throws {
+//    if image != nil {
+//      try await saveWithImage(item: self.image!, completion: { error in
+//        if let error = error {
+//          // Handle the error, e.g., show an error message to the user
+//          print("Error: \(error)")
+//        } else {
+//          // The operation was successful, you can perform any additional tasks here
+//          print("Upload successful!")
+//        }
+//      })
+//    } else {
+//      try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres)
+//    }
+//  }
   
 }
 
@@ -138,14 +153,20 @@ struct AddExperienceView: View {
           addingExperience.toggle()
           Task {
             do {
-              try await viewModel.saveData()
-              DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//              try await viewModel.saveData()
+//              try await viewModel.saveWithImage(item: viewModel.image!) { error in
+//                <#code#>
+//              }
+              viewModel.saveWithImage(item: viewModel.image!, success: {
                 addingExperience.toggle()
                 bottomSheetPosition = .hidden
-              }
-            } catch {
-              print("error adding:", error.localizedDescription)
-              addingExperience.toggle()
+              }, failure: { err in
+                print("error adding:", err.localizedDescription)
+                addingExperience.toggle()
+              })
+//              DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//
+//              }
             }
           }
         } label: {

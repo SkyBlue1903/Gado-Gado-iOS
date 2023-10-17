@@ -51,7 +51,6 @@
 		57B164222AA180B200E8260B /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B164212AA180B200E8260B /* UpdatePasswordView.swift */; };
 		57C863892AA9D3A300FDA7F7 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C863882AA9D3A300FDA7F7 /* EditProfileView.swift */; };
 		57DA67532AB29B7C005CF4E5 /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DA67522AB29B7C005CF4E5 /* ArticleDetailView.swift */; };
-		57DA67552AB2E449005CF4E5 /* NITIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DA67542AB2E449005CF4E5 /* NITIP.swift */; };
 		57DE41FE2A9240B9001344EA /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 57DE41FD2A9240B9001344EA /* BottomSheet */; };
 		57DE42002A926146001344EA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE41FF2A926146001344EA /* ImagePicker.swift */; };
 		57E432052AB6F53B0061081F /* DiscoverPlatformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E432042AB6F53B0061081F /* DiscoverPlatformView.swift */; };
@@ -97,7 +96,6 @@
 		57B164212AA180B200E8260B /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
 		57C863882AA9D3A300FDA7F7 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		57DA67522AB29B7C005CF4E5 /* ArticleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
-		57DA67542AB2E449005CF4E5 /* NITIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITIP.swift; sourceTree = "<group>"; };
 		57DE41FF2A926146001344EA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		57E432042AB6F53B0061081F /* DiscoverPlatformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPlatformView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,7 +182,6 @@
 				5735EED22A8CF6FC00E3BB0C /* Extensions.swift */,
 				5720C1E62A9311A400498B8F /* Enum.swift */,
 				57DE41FF2A926146001344EA /* ImagePicker.swift */,
-				57DA67542AB2E449005CF4E5 /* NITIP.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -358,7 +355,6 @@
 				577FB5A02A8E54CF009CA6C1 /* DiscoverCarouselView.swift in Sources */,
 				57345AC62A9A4D83008F1F00 /* PlatformIconView.swift in Sources */,
 				579271742AA32A7100F24217 /* UpdateEmailView.swift in Sources */,
-				57DA67552AB2E449005CF4E5 /* NITIP.swift in Sources */,
 				57DE42002A926146001344EA /* ImagePicker.swift in Sources */,
 				574775B32A9B4BE10093B930 /* AuthManager.swift in Sources */,
 				57A2761B2AA7707500ECA989 /* PlatformSelectView.swift in Sources */,
@@ -509,18 +505,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gado Gado/Preview Content\"";
-				DEVELOPMENT_TEAM = 2W8TC22856;
+				DEVELOPMENT_TEAM = XGVFACWZPQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Gado-Gado-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Gado Gado";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -543,18 +542,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gado Gado/Preview Content\"";
-				DEVELOPMENT_TEAM = 2W8TC22856;
+				DEVELOPMENT_TEAM = XGVFACWZPQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Gado-Gado-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Gado Gado";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

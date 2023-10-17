@@ -42,7 +42,6 @@ struct DeleteAccountView: View {
       ZStack {
         colorScheme == .light ? Color(hex: "F2F2F7").ignoresSafeArea() : Color.black.ignoresSafeArea()
         VStack(spacing: 5) {
-          let _ = print("Current email:", viewModel.currentEmail)
           Text("Current Password")
             .frame(maxWidth: .infinity, alignment: .leading)
           SecureField("Current Password", text: $viewModel.currentPassword)
@@ -51,7 +50,6 @@ struct DeleteAccountView: View {
             .font(.system(size: UIFont.preferredFont(forTextStyle: .footnote).pointSize, weight: .bold))
             .foregroundColor(Color.red)
             .frame(maxWidth: .infinity, alignment: .leading)
-          //              .opacity(!isDeleting && viewModel.newEmail.isEmpty ? 1 : 0)
           Button {
             isDeleting = true
             alertState.toggle()

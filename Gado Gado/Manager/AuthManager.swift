@@ -165,4 +165,35 @@ final class AuthManager {
     try await Firestore.firestore().collection("developer").document(auth.uid).setData(data, merge: true)
     try await StorageManager.instance.delImgProf()
   }
+  
+  func bookmarkArticle(articleId: String, save: Bool) async throws {
+    /// if `save` value is true, then `setData`
+    /// else then remove `fieldValue()`
+    guard let auth = try Auth.auth().currentUser else {
+      throw URLError(.badServerResponse)
+    }
+    let ref = try await Firestore.firestore().collection("developer").document(auth.uid)
+    //    try await ref.setData(["savedArticles":[]], merge: true)
+    if save {
+      try await ref.updateData([
+        "savedArticles": FieldValue.arrayUnion([articleId])
+      ])
+    } else {
+      try await ref.updateData([
+        "savedArticles": FieldValue.arrayRemove([articleId])
+      ])
+    }
+  }
+  
+  func getBookmark() async throws -> [String] {
+    guard let auth = Auth.auth().currentUser else {
+      throw URLError(.badServerResponse)
+    }
+    let ref = try await Firestore.firestore().collection("developer").document(auth.uid).getDocument()
+    guard let dataFetched = ref.data() else {
+      throw URLError(.badServerResponse)
+    }
+    let data = dataFetched["savedArticles"] as? [String] ?? []
+    return data
+  }
 }

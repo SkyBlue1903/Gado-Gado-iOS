@@ -17,9 +17,10 @@ struct TodayView: View {
   @State private var selectedSegment: Int = 0
   
   @State private var allGames = [Game]()
-  @State private var allArticles = [Article]()
+  @State private var allArticles: [Article] = []
   @State private var segmentHeight: CGFloat = 0
   @State private var vstackHeight: CGFloat = 0.0
+  @State var savedArticles: [Article] = []
   
   var body: some View {
     GeometryReader { geometry in
@@ -71,6 +72,13 @@ struct TodayView: View {
             .padding([.bottom, .horizontal])
           }
         }
+//        .onChange(of: savedArticles, { oldValue, newValue in
+//          print("""
+//Old value: \(oldValue)
+//New value: \(newValue)
+//\n
+//""")
+//        })
         .padding(.top, vstackHeight)
         .onAppear {
           statusBarHeight = UIApplication.shared.windows.first!.safeAreaInsets.top
@@ -87,15 +95,12 @@ struct TodayView: View {
           
           Task {
             let games = try await GameManager.instance.getGamesCollection()
-            DispatchQueue.main.async {
-              allGames = games
-            }
-
             let articles = try await ArticleManager.instance.getArticlesCollection()
             DispatchQueue.main.async {
+              allGames = games
               allArticles = articles
             }
-            print("ALL ARTICLES:", articles)
+//            self.savedArticles = try await  
           }
         }
 //      }

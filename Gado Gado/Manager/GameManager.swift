@@ -45,9 +45,9 @@ final class GameManager {
   }
   
   func addExperience(title: String, dev: String, desc: String, urlPage: String, platforms: [String], genres: [String], imgName: String = "", imgUrl: String = "") async throws {
-    guard let auth = Auth.auth().currentUser else {
-      throw URLError(.badServerResponse)
-    }
+//    guard let auth = Auth.auth().currentUser else {
+//      throw URLError(.badServerResponse)
+//    }
     
     let autoID =  Firestore.firestore().collection("games").document().documentID
     let saveData: [String: Any] = [
@@ -55,7 +55,7 @@ final class GameManager {
       "desc": desc,
       "developer": dev,
       "genres": genres,
-      "uid": auth.uid,
+//      "uid": auth.uid,
       "id": autoID,
       "platforms": platforms,
       "title": title,

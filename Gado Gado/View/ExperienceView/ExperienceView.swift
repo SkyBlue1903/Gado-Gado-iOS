@@ -16,88 +16,79 @@ final class ExperienceViewModel: ObservableObject {
   
   func refresh() async throws {
     self.userExperiences = try await GameManager.instance.userExperiences()
-//    print("EXPERIENCES:", self.userExperiences)
   }
 }
 
 struct ExperienceView: View {
-  
   @Environment(\.colorScheme) var colorScheme
   @State private var editBottomSheet: BottomSheetPosition = .hidden
   @State private var addBottomSheet: BottomSheetPosition = .hidden
-  @State private var navTitle: String = ""
+//  @State private var navTitle: String = ""
+  @State private var isSignedIn: Bool = true
   @State private var allExperiences: [Game] = []
   @State private var editExperience = Game(id: "", title: "", urlSite: "", image: "", imageFilename: "", date: Date(), genres: [], platforms: [], developer: "", desc: "", engines: [])
   @StateObject private var viewModel = ExperienceViewModel()
   
   var body: some View {
     if editBottomSheet == .hidden {
-        Task {
-          do {
-            try await viewModel.refresh()
-          }
+      Task {
+        do {
+          try await viewModel.refresh()
         }
+      }
     }
     return AnyView (
       NavigationView {
         GeometryReader { geometry in
-          if viewModel.userExperiences.isEmpty {
-            ZStack {
-              Text("Create your first experience by tapping \"+\" icon on upper right corner")
-                .multilineTextAlignment(.center)
-                .font(.headline)
-                .frame(maxWidth: getRect().width)
-                .padding(.horizontal)
-            }
+          if isSignedIn {
+            if viewModel.userExperiences.isEmpty {
+              ZStack {
+                Text("Create your first experience by tapping \"+\" icon on upper right corner")
+                  .multilineTextAlignment(.center)
+                  .font(.headline)
+                  .frame(maxWidth: getRect().width)
+                  .padding(.horizontal)
+              }
               .frame(maxWidth: .infinity)
               .frame(maxHeight: .infinity)
-          } else {
-            ScrollView(.vertical) {
-              ForEach(viewModel.userExperiences, id: \.self) { each in
-  //              NavigationLink(destination: GameDetailView(currentGame: each)) {
+            } else {
+              ScrollView(.vertical) {
+                ForEach(viewModel.userExperiences, id: \.self) { each in
                   ExperienceCardView(data: each)
                     .frame(height: getRect().height * 0.15)
                     .onTapGesture {
                       editBottomSheet = .relativeTop(0.6)
                       editExperience = each
                     }
-  //              }
-                .padding(.vertical, 6)
+                    .padding(.vertical, 6)
+                }
+                .padding([.horizontal, .bottom])
               }
-              .padding([.horizontal, .bottom])
             }
+          } else {
+            Text("Please Sign In / Sign Up to enjoy full experience")
+              .multilineTextAlignment(.center)
+              .font(.headline)
+              .frame(maxWidth: .infinity)
+              .frame(maxHeight: .infinity)
           }
-          
         }
-        //        .opacity(bottomSheetPosition == .hidden ? 1 : 0)
-  //      .onChange(of: editBottomSheet, perform: { newValue in
-  //        print("IAM CHANGED:", newValue)
-  //        if newValue == .hidden  {
-  //          DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-  //            Task {
-  //              do {
-  //                try await viewModel.refresh()
-  //              }
-  //            }
-  //          }
-  //        }
-  //      })
         .navigationTitle("Experience")
         .toolbar {
           ToolbarItem(placement: .primaryAction) {
-            //            Image(systemName: "plus")
             Button {
-              // ACTION OPEN SHEET
               addBottomSheet = .relativeTop(0.6)
             } label: {
               Image(systemName: "plus")
             }
           }
         }
+        .disabled(!isSignedIn)
         .onAppear {
           Task {
             do {
               try await viewModel.refresh()
+//              fetchUser()
             }
           }
         }
@@ -120,6 +111,11 @@ struct ExperienceView: View {
         .enableSwipeToDismiss(true)
       }
     )
+  }
+  
+  private func fetchUser() {
+    let auth = try? AuthManager.instance.getAuthUser()
+    self.isSignedIn = auth == nil
   }
 }
 

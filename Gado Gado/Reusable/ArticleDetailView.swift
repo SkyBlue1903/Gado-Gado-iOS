@@ -9,11 +9,22 @@ import SwiftUI
 import VisualEffectView
 import SDWebImageSwiftUI
 
+@MainActor
+final class ArticleDetailViewModel: ObservableObject {
+  @Published var favoriteArticles: [String] = []
+  
+  func bookmark(articleId: String, save: Bool) async throws {
+    if save {
+      try await AuthManager.instance.bookmarkArticle(articleId: articleId, save: save)
+      favoriteArticles.removeLast()
+    }
+  }
+}
+
 struct ArticleDetailView: View {
   
   var data: Article?
   @State private var gameData: Game?
-  
   @State var offset: CGFloat = 0
   @Environment(\.presentationMode) var presentation
   @Environment(\.colorScheme) var colorScheme
@@ -24,6 +35,8 @@ struct ArticleDetailView: View {
   @State private var btnHidden: Bool = false
   @State private var scrollPosition: CGPoint = .zero
   @State private var isShareSheetPresented = false
+  @StateObject private var viewModel = ArticleDetailViewModel()
+//  @Binding var saved: [Article]
   
   var headerParallax: some View {
     VStack(spacing: 15) {
@@ -38,8 +51,7 @@ struct ArticleDetailView: View {
           ZStack(alignment: .bottom) {
             WebImage(url: URL(string: data?.image ?? ""))
               .placeholder {
-                Image("sample-header") // Replace with the name of your placeholder image asset
-                  .resizable()
+                ProgressView()
               }
               .resizable()
               .aspectRatio(contentMode: .fill)
@@ -142,21 +154,25 @@ struct ArticleDetailView: View {
         .navigationTitle("News")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-          ToolbarItem(placement: .primaryAction) {
-            Button {
-              isShareSheetPresented.toggle()
-            } label: {
-              Image(systemName: "square.and.arrow.up")
-            }
-          }
+//          ToolbarItem(placement: .primaryAction) {
+//            Button {
+//              isShareSheetPresented.toggle()
+//            } label: {
+//              Image(systemName: "square.and.arrow.up")
+//            }
+//          }
           
-          ToolbarItem(placement: .navigationBarTrailing) {
-            Button {
-              
-            } label: {
-              Image(systemName: "bookmark")
-            }
-          }
+//          ToolbarItem(placement: .navigationBarTrailing) {
+//            Button {
+//              Task {
+//                do {
+//                  try await viewModel.bookmark(articleId: data?.id ?? "", save: true)
+//                }
+//              }
+//            } label: {
+//              Image(systemName: "bookmark")
+//            }
+//          }
         }
         .navigationBarHidden(barHidden)
         .animation(.default, value: barHidden)
@@ -186,11 +202,11 @@ struct ArticleDetailView: View {
           .frame(maxWidth:getRect().width - 32)
           .frame(height: 70)
           .cornerRadius(10)
-//          .offset(y: -16)
           .onAppear {
             Task {
               do {
                 try await self.gameData = GameManager.instance.searchByTitle(data?.game ?? "")
+                viewModel.favoriteArticles = try await AuthManager.instance.getBookmark()
               }
             }
           }

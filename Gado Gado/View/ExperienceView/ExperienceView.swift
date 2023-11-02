@@ -23,7 +23,7 @@ struct ExperienceView: View {
   @Environment(\.colorScheme) var colorScheme
   @State private var editBottomSheet: BottomSheetPosition = .hidden
   @State private var addBottomSheet: BottomSheetPosition = .hidden
-//  @State private var navTitle: String = ""
+  //  @State private var navTitle: String = ""
   @State private var isSignedIn: Bool = true
   @State private var allExperiences: [Game] = []
   @State private var editExperience = Game(id: "", title: "", urlSite: "", image: "", imageFilename: "", date: Date(), genres: [], platforms: [], developer: "", desc: "", engines: [])
@@ -38,57 +38,77 @@ struct ExperienceView: View {
       }
     }
     return AnyView (
-      NavigationView {
+//      NavigationView {
         GeometryReader { geometry in
-          if isSignedIn {
-            if viewModel.userExperiences.isEmpty {
-              ZStack {
-                Text("Create your first experience by tapping \"+\" icon on upper right corner")
-                  .multilineTextAlignment(.center)
-                  .font(.headline)
-                  .frame(maxWidth: getRect().width)
-                  .padding(.horizontal)
-              }
-              .frame(maxWidth: .infinity)
-              .frame(maxHeight: .infinity)
-            } else {
-              ScrollView(.vertical) {
-                ForEach(viewModel.userExperiences, id: \.self) { each in
-                  ExperienceCardView(data: each)
-                    .frame(height: getRect().height * 0.15)
-                    .onTapGesture {
-                      editBottomSheet = .relativeTop(0.6)
-                      editExperience = each
-                    }
-                    .padding(.vertical, 6)
+          ZStack(alignment: .bottomTrailing) {
+            if isSignedIn {
+              if viewModel.userExperiences.isEmpty {
+                ZStack {
+                  Text("Create your first experience by tapping \"+\" icon on upper right corner")
+                    .multilineTextAlignment(.center)
+                    .font(.headline)
+                    .frame(maxWidth: getRect().width)
+                    .padding(.horizontal)
                 }
-                .padding([.horizontal, .bottom])
+                .frame(maxWidth: .infinity)
+                .frame(maxHeight: .infinity)
+              } else {
+                ScrollView(.vertical) {
+                  ForEach(viewModel.userExperiences, id: \.self) { each in
+                    ExperienceCardView(data: each)
+                      .frame(height: getRect().height * 0.15)
+                      .onTapGesture {
+                        editBottomSheet = .relativeTop(0.6)
+                        editExperience = each
+                      }
+                      .padding(.vertical, 6)
+                  }
+                  .padding([.horizontal, .bottom])
+                }
               }
+            } else {
+              Text("Please Sign In / Sign Up to enjoy full experience")
+                .multilineTextAlignment(.center)
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+                .frame(maxHeight: .infinity)
             }
-          } else {
-            Text("Please Sign In / Sign Up to enjoy full experience")
-              .multilineTextAlignment(.center)
-              .font(.headline)
-              .frame(maxWidth: .infinity)
-              .frame(maxHeight: .infinity)
+            
+            VStack {
+              Spacer()
+              Button(action: {
+                // Action to be performed when the button is tapped
+                addBottomSheet = .relativeTop(0.6)
+                print("Button tapped!")
+              }) {
+                Image(systemName: "plus")
+                  .font(.title3)
+                  .foregroundColor(.white)
+                  .padding()
+                  .background(Color.accentColor)
+                  .cornerRadius(30)
+                  .padding([.bottom, .trailing])
+              }
+              .zIndex(1) // Place the button above the list
+            }
           }
         }
-        .navigationTitle("Experience")
-        .toolbar {
-          ToolbarItem(placement: .primaryAction) {
-            Button {
-              addBottomSheet = .relativeTop(0.6)
-            } label: {
-              Image(systemName: "plus")
-            }
-          }
-        }
+//        .navigationTitle("Experience")
+//        .toolbar {
+//          ToolbarItem(placement: .primaryAction) {
+//            Button {
+//              addBottomSheet = .relativeTop(0.6)
+//            } label: {
+//              Image(systemName: "plus")
+//            }
+//          }
+//        }
         .disabled(!isSignedIn)
         .onAppear {
           Task {
             do {
               try await viewModel.refresh()
-//              fetchUser()
+              //              fetchUser()
             }
           }
         }
@@ -109,7 +129,7 @@ struct ExperienceView: View {
         .showDragIndicator(true)
         .enableBackgroundBlur(true)
         .enableSwipeToDismiss(true)
-      }
+//      }
     )
   }
   

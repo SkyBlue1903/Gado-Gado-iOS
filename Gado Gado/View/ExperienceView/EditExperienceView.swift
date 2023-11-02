@@ -33,18 +33,11 @@ final class EditExperienceViewModel: ObservableObject {
     }
   }
   
-  func saveData(success: @escaping () -> Void, failure: @escaping(Error) -> Void) {
-//    if image != nil {
-//      try await saveWithImage(item: self.image!)
-//    } else {
-//    }
-    Task {
-      do {
-        try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres)
-        success()
-      } catch {
-        failure(error)
-      }
+  func saveData() async throws {
+    if image != nil {
+      try await saveWithImage(item: self.image!)
+    } else {
+      try await GameManager.instance.addExperience(title: self.gameTitle, dev: self.gameDeveloper, desc: self.gameDescription, urlPage: self.gameUrl, platforms: self.platforms, genres: self.genres)
     }
   }
   
@@ -52,15 +45,8 @@ final class EditExperienceViewModel: ObservableObject {
     try await GameManager.instance.delExperience(gameId: gameId, withImage: withImage, imgFilename: imgFilename)
   }
   
-  func deleteImage(gameId: String, imgFilename: String, success: @escaping () -> Void, failure: @escaping(Error) -> Void) {
-    Task {
-      do {
-        try await GameManager.instance.delImgExp(gameId: gameId, imgFilename: imgFilename, delRefOnly: true)
-        success()
-      } catch {
-        failure(error)
-      }
-    }
+  func deleteImage(gameId: String, imgFilename: String) async throws {
+    try await GameManager.instance.delImgExp(gameId: gameId, imgFilename: imgFilename, delRefOnly: true)
   }
 }
 
@@ -174,21 +160,24 @@ struct EditExperienceView: View {
           editingExperience.toggle()
           Task {
             do {
-//              try await viewModel.deleteImage(gameId: data.id, imgFilename: data.imageFilename ?? "")
-              viewModel.deleteImage(gameId: data.id, imgFilename: data.imageFilename ?? "", success: {
-                viewModel.saveData(success: {
-                  editingExperience.toggle()
-                  bottomSheetPosition = .hidden
-                }, failure: { error in
-                  print("error saving data: \(error.localizedDescription)")
-                })
-              }, failure: { error in
-                print("error deleting: \(error.localizedDescription)")
-              })
-//              try await viewModel.saveData()
-//              DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                
-//              }
+              try await viewModel.deleteImage(gameId: data.id, imgFilename: data.imageFilename ?? "")
+              try await viewModel.saveData()
+              DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                  editingExperience.toggle()
+                                  bottomSheetPosition = .hidden
+              }
+              // MARK: NEW CODE
+//              viewModel.deleteImage(gameId: data.id, imgFilename: data.imageFilename ?? "", success: {
+//                viewModel.saveData(success: {
+//                  editingExperience.toggle()
+//                  bottomSheetPosition = .hidden
+//                }, failure: { error in
+//                  print("error saving data: \(error.localizedDescription)")
+//                })
+//              }, failure: { error in
+//                print("error deleting: \(error.localizedDescription)")
+//              })
+              // -- end new code --
             } catch {
               print("error adding:", error.localizedDescription)
               editingExperience.toggle()

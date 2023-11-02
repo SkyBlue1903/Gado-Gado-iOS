@@ -9,7 +9,6 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ExperienceCardView: View {
-  
   @Environment(\.colorScheme) var colorScheme
   var data: Game
   
@@ -22,7 +21,6 @@ struct ExperienceCardView: View {
               .opacity(0.2)
             ProgressView()
           }
-//          .frame(width: 150, height: 90)
         }
         .resizable()
         .aspectRatio(contentMode: .fill)
@@ -43,7 +41,6 @@ struct ExperienceCardView: View {
             .lineLimit(2)
             .multilineTextAlignment(.leading)
         }
-        //        .frame(maxWidth: .infinity, alignment: .leading)
         Spacer()
         Text(ExtensionManager.instance.relativeTime(from: data.date ?? Date()))
           .font(.caption2)

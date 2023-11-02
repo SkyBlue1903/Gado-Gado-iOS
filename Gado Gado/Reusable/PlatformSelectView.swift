@@ -61,9 +61,9 @@ struct MultipleSelectionRow: View {
 }
 
 struct PlatformSelectView_Previews: PreviewProvider {
-    static var previews: some View {
-      NavigationView {
-        PlatformSelectView(selections: .constant(["iOS", "macOS"]))
-      }
+  static var previews: some View {
+    NavigationView {
+      PlatformSelectView(selections: .constant(["iOS", "macOS"]))
     }
+  }
 }

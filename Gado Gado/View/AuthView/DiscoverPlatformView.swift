@@ -17,7 +17,7 @@ struct DiscoverPlatformView: View {
     var body: some View {
       ScrollView(.vertical) {
         ForEach(allGames, id: \.self) { each in
-          NavigationLink(destination: GameDetailView(currentGame: each)) {
+          NavigationLink(destination: GameDetailView(data: each)) {
             HStack {
               WebImage(url: URL(string: each.image ?? ""))
                 .resizable()

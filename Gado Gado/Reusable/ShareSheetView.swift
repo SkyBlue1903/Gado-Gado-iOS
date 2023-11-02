@@ -16,6 +16,5 @@ struct TextShareSheetView: UIViewControllerRepresentable {
   }
   
   func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-    // Update the view controller if needed
   }
 }

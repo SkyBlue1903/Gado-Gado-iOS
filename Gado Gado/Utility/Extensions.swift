@@ -41,7 +41,7 @@ extension Color {
       self = Color(hex: "202020")
     case .primaryApp:
       self = Color(hex: "7DCE13") /// Mint green
-                                  //      self = Color(hex: "4F3728") /// Color brown
+      //      self = Color(hex: "4F3728") /// Color brown
     case .secondaryApp:
       self = Color(hex: "00000") // MARK: Brown color needs to fix soon
     }
@@ -154,6 +154,10 @@ extension UIDevice {
       case "iPhone14,8":                  return "iPhone 14 Plus"
       case "iPhone15,2":                  return "iPhone 14 Pro"
       case "iPhone15,3":                  return "iPhone 14 Pro Max"
+        // NEW ENTRY DEVICES
+      case "iPhone15,4":                  return "iPhone 15"
+      case "iPhone15,5":                  return "iPhone 15 Plus"
+      case "iPhone16,1":                  return "iPhone 15 Pro"
       case "iPhone16,2":                  return "iPhone 15 Pro Max"
       case "i386", "x86_64", "arm64":     return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))"
       default:                            return identifier
@@ -273,5 +277,25 @@ struct EdgeBorder: Shape {
       case .trailing: return Path(.init(x: rect.maxX - width, y: rect.minY, width: width, height: rect.height))
       }
     }.reduce(into: Path()) { $0.addPath($1) }
+  }
+}
+
+extension String {
+  var capitalizedSentence: String {
+    // 1
+    let firstLetter = self.prefix(1).capitalized
+    // 2
+    let remainingLetters = self.dropFirst().lowercased()
+    // 3
+    return firstLetter + remainingLetters
+  }
+}
+
+extension UIApplication {
+  func endEditing(_ force: Bool) {
+    self.windows
+      .filter{$0.isKeyWindow}
+      .first?
+      .endEditing(force)
   }
 }

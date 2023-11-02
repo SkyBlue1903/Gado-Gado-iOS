@@ -26,14 +26,12 @@ struct TextFieldButtonStyle: ViewModifier {
   
   func body(content: Content) -> some View {
     content
-//      .padding()
       .foregroundColor(Color.white)
       .frame(maxWidth: .infinity)
       .frame(height: CGFloat(.heightTF))
       .background(!isDisabled ? Color.accentColor : Color.gray.opacity(0.5))
       .cornerRadius(10)
       .disabled(!isDisabled ? false : true)
-//      .padding(.top, UIScreen().bounds.height * 0.03)
   }
 }
 
@@ -65,19 +63,5 @@ struct CustomButtonFormStyle: ViewModifier {
       .frame(maxWidth: .infinity)
       .foregroundColor(.white)
       .cornerRadius(10)
-  }
-}
-
-// ISHIDDEN STRUCT IS HERE
-
-struct HiddenModifier: ViewModifier {
-  let isHidden: Bool
-  
-  func body(content: Content) -> some View {
-    if isHidden {
-      content.hidden()
-    } else {
-      content
-    }
   }
 }

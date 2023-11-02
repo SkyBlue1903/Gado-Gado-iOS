@@ -14,7 +14,7 @@ struct TodayGameView: View {
   @Environment(\.colorScheme) var colorScheme
   
   var body: some View {
-    NavigationLink(destination: GameDetailView(currentGame: data)) {
+    NavigationLink(destination: GameDetailView(data: data)) {
       VStack(alignment: .leading, spacing: 16.0) {
         WebImage(url: URL(string: "\(data.image ?? "")"))
           .placeholder {
@@ -26,7 +26,7 @@ struct TodayGameView: View {
           }
           .resizable()
           .clipped()
-        VStack(alignment: .leading) {
+        LazyVStack(alignment: .leading) {
           Text("\(data.title ?? "")")
             .font(.headline)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -49,7 +49,7 @@ struct TodayGameView: View {
 }
 
 struct TodayGameView_Previews: PreviewProvider {
-    static var previews: some View {
-      TodayGameView(data: Game(id: "123", title: "Cities Skylines II", urlSite: "", image: "", imageFilename: "", date: Date(), genres: ["Simulation", "Strategy"], platforms: ["Windows", "PS4", "Xbox One"], developer: "Paradox Interactive", desc: "Build your own cities!", engines: ["Unreal Engine"]))
-    }
+  static var previews: some View {
+    TodayGameView(data: Game(id: "123", title: "Cities Skylines II", urlSite: "", image: "", imageFilename: "", date: Date(), genres: ["Simulation", "Strategy"], platforms: ["Windows", "PS4", "Xbox One"], developer: "Paradox Interactive", desc: "Build your own cities!", engines: ["Unreal Engine"]))
+  }
 }

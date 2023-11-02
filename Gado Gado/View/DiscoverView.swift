@@ -42,156 +42,156 @@ struct DiscoverView: View {
               .frame(maxWidth: getRect().width, alignment: .leading)
               .frame(height: getRect().height * 0.325, alignment: .top) // MARK: Needs responsive for smaller iPhones
           }
-          Group {
-            //// Add Category here (by VStack)
-            VStack {
-              HStack {
-                Text("Windows")
-                  .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
-                Spacer()
-                NavigationLink(destination: DiscoverPlatformView(platform: "Windows", allGames: windowsGames)) {
-                  Text("See All")
-                    .font(.body)
-                }
-              }
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
-              ForEach(windowsGames.prefix(3), id: \.self) { each in
-                NavigationLink(destination: GameDetailView(currentGame: each)) {
-                  HStack {
-                    WebImage(url: URL(string: each.image ?? ""))
-                      .resizable()
-                      .placeholder {
-                        ZStack {
-                          Color.gray
-                            .opacity(0.2)
-                          ProgressView()
-                        }
-                        .frame(width: 90, height: 90)
-                      }
-                      .scaledToFill()
-                      .frame(width: 90, height: 90)
-                      .clipped()
-                      .cornerRadius(10)
-                    VStack(alignment: .leading, spacing: 0) {
-                      Text(each.title ?? "")
-                        .lineLimit(1)
-                        .foregroundColor(colorScheme == .light ? Color.black : Color.white)
-                      Text(ExtensionManager.instance.relativeTime(from: each.date ?? Date()))
-                        .lineLimit(1)
-                        .foregroundColor(Color.gray.opacity(0.5))
-                        .font(.caption)
-                    }
-                  }
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                  .frame(height:100)
-                } // MARK: Needs responsive for smaller iPhones
-                Divider()
-              }
-              
-              
-              /// ** ANOTHER CONTENT
-            }
-            VStack {
-              HStack {
-                Text("Android")
-                  .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
-                Spacer()
-                NavigationLink(destination: DiscoverPlatformView(platform: "Android", allGames: androidGames)) {
-                  Text("See All")
-                    .font(.body)
-                }
-              }
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
-              ForEach(androidGames.prefix(3), id: \.self) { each in
-                NavigationLink(destination: GameDetailView(currentGame: each)) {
-                  HStack {
-                    WebImage(url: URL(string: each.image ?? ""))
-                      .resizable()
-                      .placeholder {
-                        ZStack {
-                          Color.gray
-                            .opacity(0.2)
-                          ProgressView()
-                        }
-                        .frame(width: 90, height: 90)
-                      }
-                      .scaledToFill()
-                      .frame(width: 90, height: 90)
-                      .clipped()
-                      .cornerRadius(10)
-                    VStack(alignment: .leading, spacing: 0) {
-                      Text(each.title ?? "")
-                        .lineLimit(1)
-                        .foregroundColor(colorScheme == .light ? Color.black : Color.white)
-                      Text(ExtensionManager.instance.relativeTime(from: each.date ?? Date()))
-                        .lineLimit(1)
-                        .foregroundColor(Color.gray.opacity(0.5))
-                        .font(.caption)
-                    }
-                  }
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                  .frame(height:100)
-                } // MARK: Needs responsive for smaller iPhones
-                Divider()
-              }
-              
-              
-              /// ** ANOTHER CONTENT
-            }
-            VStack {
-              HStack {
-                Text("HTML 5")
-                  .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
-                Spacer()
-                NavigationLink(destination: DiscoverPlatformView(platform: "HTML 5", allGames: html5Games)) {
-                  Text("See All")
-                    .font(.body)
-                }
-              }
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
-              ForEach(html5Games.prefix(3), id: \.self) { each in
-                NavigationLink(destination: GameDetailView(currentGame: each)) {
-                  HStack {
-                    WebImage(url: URL(string: each.image ?? ""))
-                      .resizable()
-                      .placeholder {
-                        ZStack {
-                          Color.gray
-                            .opacity(0.2)
-                          ProgressView()
-                        }
-                        .frame(width: 90, height: 90)
-                      }
-                      .scaledToFill()
-                      .frame(width: 90, height: 90)
-                      .clipped()
-                      .cornerRadius(10)
-                    VStack(alignment: .leading, spacing: 0) {
-                      Text(each.title ?? "")
-                        .lineLimit(1)
-                        .foregroundColor(colorScheme == .light ? Color.black : Color.white)
-                      Text(ExtensionManager.instance.relativeTime(from: each.date ?? Date()))
-                        .lineLimit(1)
-                        .foregroundColor(Color.gray.opacity(0.5))
-                        .font(.caption)
-                    }
-                  }
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                  .frame(height:100)
-                } // MARK: Needs responsive for smaller iPhones
-                Divider()
-              }
-              
-              
-              /// ** ANOTHER CONTENT
-            }
-            /// end category here
-          }
-          .padding(.horizontal)
-          .padding(.top, getRect().height * 0.05)
+//          Group {
+//            //// Add Category here (by VStack)
+//            VStack {
+//              HStack {
+//                Text("Windows")
+//                  .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
+//                Spacer()
+//                NavigationLink(destination: DiscoverPlatformView(platform: "Windows", allGames: windowsGames)) {
+//                  Text("See All")
+//                    .font(.body)
+//                }
+//              }
+//              .frame(maxWidth: .infinity, alignment: .leading)
+//              .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
+//              ForEach(windowsGames.prefix(3), id: \.self) { each in
+//                NavigationLink(destination: GameDetailView(currentGame: each)) {
+//                  HStack {
+//                    WebImage(url: URL(string: each.image ?? ""))
+//                      .resizable()
+//                      .placeholder {
+//                        ZStack {
+//                          Color.gray
+//                            .opacity(0.2)
+//                          ProgressView()
+//                        }
+//                        .frame(width: 90, height: 90)
+//                      }
+//                      .scaledToFill()
+//                      .frame(width: 90, height: 90)
+//                      .clipped()
+//                      .cornerRadius(10)
+//                    VStack(alignment: .leading, spacing: 0) {
+//                      Text(each.title ?? "")
+//                        .lineLimit(1)
+//                        .foregroundColor(colorScheme == .light ? Color.black : Color.white)
+//                      Text(ExtensionManager.instance.relativeTime(from: each.date ?? Date()))
+//                        .lineLimit(1)
+//                        .foregroundColor(Color.gray.opacity(0.5))
+//                        .font(.caption)
+//                    }
+//                  }
+//                  .frame(maxWidth: .infinity, alignment: .leading)
+//                  .frame(height:100)
+//                } // MARK: Needs responsive for smaller iPhones
+//                Divider()
+//              }
+//              
+//              
+//              /// ** ANOTHER CONTENT
+//            }
+//            VStack {
+//              HStack {
+//                Text("Android")
+//                  .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
+//                Spacer()
+//                NavigationLink(destination: DiscoverPlatformView(platform: "Android", allGames: androidGames)) {
+//                  Text("See All")
+//                    .font(.body)
+//                }
+//              }
+//              .frame(maxWidth: .infinity, alignment: .leading)
+//              .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
+//              ForEach(androidGames.prefix(3), id: \.self) { each in
+//                NavigationLink(destination: GameDetailView(currentGame: each)) {
+//                  HStack {
+//                    WebImage(url: URL(string: each.image ?? ""))
+//                      .resizable()
+//                      .placeholder {
+//                        ZStack {
+//                          Color.gray
+//                            .opacity(0.2)
+//                          ProgressView()
+//                        }
+//                        .frame(width: 90, height: 90)
+//                      }
+//                      .scaledToFill()
+//                      .frame(width: 90, height: 90)
+//                      .clipped()
+//                      .cornerRadius(10)
+//                    VStack(alignment: .leading, spacing: 0) {
+//                      Text(each.title ?? "")
+//                        .lineLimit(1)
+//                        .foregroundColor(colorScheme == .light ? Color.black : Color.white)
+//                      Text(ExtensionManager.instance.relativeTime(from: each.date ?? Date()))
+//                        .lineLimit(1)
+//                        .foregroundColor(Color.gray.opacity(0.5))
+//                        .font(.caption)
+//                    }
+//                  }
+//                  .frame(maxWidth: .infinity, alignment: .leading)
+//                  .frame(height:100)
+//                } // MARK: Needs responsive for smaller iPhones
+//                Divider()
+//              }
+//              
+//              
+//              /// ** ANOTHER CONTENT
+//            }
+//            VStack {
+//              HStack {
+//                Text("HTML 5")
+//                  .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
+//                Spacer()
+//                NavigationLink(destination: DiscoverPlatformView(platform: "HTML 5", allGames: html5Games)) {
+//                  Text("See All")
+//                    .font(.body)
+//                }
+//              }
+//              .frame(maxWidth: .infinity, alignment: .leading)
+//              .font(.system(size: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold))
+//              ForEach(html5Games.prefix(3), id: \.self) { each in
+//                NavigationLink(destination: GameDetailView(currentGame: each)) {
+//                  HStack {
+//                    WebImage(url: URL(string: each.image ?? ""))
+//                      .resizable()
+//                      .placeholder {
+//                        ZStack {
+//                          Color.gray
+//                            .opacity(0.2)
+//                          ProgressView()
+//                        }
+//                        .frame(width: 90, height: 90)
+//                      }
+//                      .scaledToFill()
+//                      .frame(width: 90, height: 90)
+//                      .clipped()
+//                      .cornerRadius(10)
+//                    VStack(alignment: .leading, spacing: 0) {
+//                      Text(each.title ?? "")
+//                        .lineLimit(1)
+//                        .foregroundColor(colorScheme == .light ? Color.black : Color.white)
+//                      Text(ExtensionManager.instance.relativeTime(from: each.date ?? Date()))
+//                        .lineLimit(1)
+//                        .foregroundColor(Color.gray.opacity(0.5))
+//                        .font(.caption)
+//                    }
+//                  }
+//                  .frame(maxWidth: .infinity, alignment: .leading)
+//                  .frame(height:100)
+//                } // MARK: Needs responsive for smaller iPhones
+//                Divider()
+//              }
+//              
+//              
+//              /// ** ANOTHER CONTENT
+//            }
+//            /// end category here
+//          }
+//          .padding(.horizontal)
+//          .padding(.top, getRect().height * 0.05)
         }
         .background(GeometryReader { geometry in
           Color.clear

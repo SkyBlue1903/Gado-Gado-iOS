@@ -12,7 +12,6 @@ import FirebaseAuth
 import FirebaseStorage
 
 final class GameManager {
-  
   static let instance = GameManager() // Singleton
   private init() { }
   private let storage = Storage.storage().reference()
@@ -177,4 +176,5 @@ final class GameManager {
     }
     return tempArray
   }
+  
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 enum RootTab {
-  case today, experience, discover, profile
+  case today, experience, search, profile
 }
 
 enum ColorPalette {
@@ -25,4 +25,12 @@ enum SizePalette {
 
 enum OpacityPalette {
   case fieldOpacity, disabledOpacity
+}
+
+enum SearchType {
+  case all, games, articles
+}
+
+enum ContentType {
+  case article, game
 }

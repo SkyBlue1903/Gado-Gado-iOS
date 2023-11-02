@@ -36,7 +36,7 @@ struct ArticleDetailView: View {
   @State private var scrollPosition: CGPoint = .zero
   @State private var isShareSheetPresented = false
   @StateObject private var viewModel = ArticleDetailViewModel()
-//  @Binding var saved: [Article]
+  //  @Binding var saved: [Article]
   
   var headerParallax: some View {
     VStack(spacing: 15) {
@@ -45,7 +45,7 @@ struct ArticleDetailView: View {
         let minY = proxy.frame(in: .global).minY
         DispatchQueue.main.async {
           self.offset = minY
-//                    print("OFFSET:", self.offset) // MARK: Disable this for debugging
+          //                    print("OFFSET:", self.offset) // MARK: Disable this for debugging
         }
         return AnyView (
           ZStack(alignment: .bottom) {
@@ -66,7 +66,6 @@ struct ArticleDetailView: View {
   }
   
   var body: some View {
-    //    NavigationView {
     GeometryReader { geometry in
       VStack(alignment: .leading, spacing: 0) {
         Button {
@@ -81,11 +80,8 @@ struct ArticleDetailView: View {
             .padding(.top, 8)
         }
       }
-      //      .frame(height: getRect().height * 0.1)
-      //      .frame(maxWidth: getRect().width, alignment: .leading)
       .padding(.horizontal, 16)
       .zIndex(1)
-      //        .background(.thickMaterial)
       ZStack {
         ScrollView(.vertical) {
           VStack(spacing: 0) {
@@ -97,15 +93,14 @@ struct ArticleDetailView: View {
                 VStack(alignment: .leading, spacing: 5) {
                   Text("\(ExtensionManager.instance.relativeTime(from: data?.date ?? Date())) • \(data?.subtitle ?? "")")
                     .multilineTextAlignment(.leading)
-                  .foregroundColor(Color.gray)
-                  .font(.headline)
+                    .foregroundColor(Color.gray)
+                    .font(.headline)
                   HStack(spacing: 4) {
                     Image(systemName: "person.fill")
                     Text(data?.author ?? "")
                       .lineLimit(1)
                   }
-                    .foregroundColor(.gray)
-                  //                  .padding(.bottom, 16)
+                  .foregroundColor(.gray)
                 }
                 Text(data?.content ?? "")
               }
@@ -148,32 +143,8 @@ struct ArticleDetailView: View {
           statusBarHeight = UIApplication.shared.windows.first!.safeAreaInsets.top
           btnHidden = false
         }
-        //      .sheet(isPresented: $isShareSheetPresented, content: {
-        //        TextShareSheetView(activityItems: ["Hey there! I've got some epic news for you – this incredible game called \"\(currentGame?.title ?? "")\" that's totally awesome! And guess what? It's available on \(convertArrayToString(currentGame?.platforms ?? ["some"])) platforms. Time to level up this  \(convertArrayToString(currentGame?.genres ?? ["action"])), so what are you waiting for?"])
-        //      })
         .navigationTitle("News")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-//          ToolbarItem(placement: .primaryAction) {
-//            Button {
-//              isShareSheetPresented.toggle()
-//            } label: {
-//              Image(systemName: "square.and.arrow.up")
-//            }
-//          }
-          
-//          ToolbarItem(placement: .navigationBarTrailing) {
-//            Button {
-//              Task {
-//                do {
-//                  try await viewModel.bookmark(articleId: data?.id ?? "", save: true)
-//                }
-//              }
-//            } label: {
-//              Image(systemName: "bookmark")
-//            }
-//          }
-        }
         .navigationBarHidden(barHidden)
         .animation(.default, value: barHidden)
         VStack {
@@ -181,7 +152,7 @@ struct ArticleDetailView: View {
           
           ZStack(alignment: .leading) {
             VisualEffect(colorTint: .black, colorTintAlpha: 0.6, blurRadius: 18, scale: 1)
-            NavigationLink(destination: GameDetailView(currentGame: gameData), label: {
+            NavigationLink(destination: GameDetailView(data: gameData), label: {
               HStack {
                 VStack(alignment: .leading, spacing: 5) {
                   Text(data?.game ?? "")
@@ -202,6 +173,7 @@ struct ArticleDetailView: View {
           .frame(maxWidth:getRect().width - 32)
           .frame(height: 70)
           .cornerRadius(10)
+          .padding(.bottom)
           .onAppear {
             Task {
               do {

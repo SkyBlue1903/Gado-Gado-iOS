@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 
 struct GameDetailView: View {
   
-  var currentGame: Game?
+  var data: Game?
   
   @State var offset: CGFloat = 0
   @Environment(\.presentationMode) var presentation
@@ -35,7 +35,7 @@ struct GameDetailView: View {
         }
         return AnyView (
           ZStack(alignment: .bottom) {
-            WebImage(url: URL(string: "\(currentGame?.image ?? "")"))
+            WebImage(url: URL(string: "\(data?.image ?? "")"))
               .placeholder {
                 // Placeholder Image View
                 Image("sample-header") // Replace with the name of your placeholder image asset
@@ -48,10 +48,10 @@ struct GameDetailView: View {
               VisualEffect(colorTint: .black, colorTintAlpha: 0.6, blurRadius: 18, scale: 1)
               HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                  Text("\(currentGame?.title ?? "")")
+                  Text("\(data?.title ?? "")")
                     .lineLimit(1)
                     .font(.system(size: UIFont.preferredFont(forTextStyle: .headline).pointSize, weight: .bold))
-                  PlatformIconView(platforms: currentGame?.platforms)
+                  PlatformIconView(platforms: data?.platforms)
                   .font(.caption)
                 }
                 Spacer()
@@ -107,7 +107,7 @@ struct GameDetailView: View {
             VStack(alignment: .leading, spacing: 5) {
               Text("Overview")
                 .font(.system(size: UIFont.preferredFont(forTextStyle: .title3).pointSize, weight: .bold))
-              Text("\(currentGame?.desc ?? "No description")")
+              Text("\(data?.desc ?? "No description")")
             }
             VStack(alignment: .leading, spacing: 5) {
               Text("Information")
@@ -115,22 +115,22 @@ struct GameDetailView: View {
               Divider()
               Group {
                 DisclosureGroup("Developer") {
-                  Text("\(currentGame?.developer ?? "No information")")
+                  Text("\(data?.developer ?? "No information")")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 Divider()
                 DisclosureGroup("Genre") {
-                  Text(convertArrayToString(currentGame?.genres ?? ["No information"]))
+                  Text(convertArrayToString(data?.genres ?? ["No information"]))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 Divider()
                 DisclosureGroup("Engine") {
-                  Text(convertArrayToString(currentGame?.engines ?? ["No information"]))
+                  Text(convertArrayToString(data?.engines ?? ["No information"]))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 Divider()
                 HStack {
-                  Link("Developer Website", destination: URL(string: "\(currentGame?.urlSite ?? "https://google.com")")!)
+                  Link("Developer Website", destination: URL(string: "\(data?.urlSite ?? "https://google.com")")!)
                     .padding(.vertical, 6)
                   Spacer()
                   Image(systemName: "safari")
@@ -181,7 +181,7 @@ struct GameDetailView: View {
 //        btnHidden = false
       }
       .sheet(isPresented: $isShareSheetPresented, content: {
-        TextShareSheetView(activityItems: ["Hey there! I've got some epic news for you – this incredible game called \"\(currentGame?.title ?? "")\" that's totally awesome! And guess what? It's available on \(convertArrayToString(currentGame?.platforms ?? ["some"])) platforms. Time to level up this  \(convertArrayToString(currentGame?.genres ?? ["action"])), so what are you waiting for?"])
+        TextShareSheetView(activityItems: ["Hey there! I've got some epic news for you – this incredible game called \"\(data?.title ?? "")\" that's totally awesome! And guess what? It's available on \(convertArrayToString(data?.platforms ?? ["some"])) platforms. Time to level up this  \(convertArrayToString(data?.genres ?? ["action"])), so what are you waiting for?"])
       })
       .navigationTitle("Cities Skylines")
       .navigationBarTitleDisplayMode(.inline)
@@ -214,7 +214,7 @@ struct GameDetailView: View {
 struct GameDetailView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      GameDetailView(currentGame: Game(id: "123", title: "Cities Skylines II", urlSite: "https://www.paradoxinteractive.com", image: "sample-header", imageFilename: "123", date: Date(), genres: ["Simulation", "Strategy"], platforms: ["Xbox", "PS5", "Windows"], developer: "Paradox Interactive", desc: """
+      GameDetailView(data: Game(id: "123", title: "Cities Skylines II", urlSite: "https://www.paradoxinteractive.com", image: "sample-header", imageFilename: "123", date: Date(), genres: ["Simulation", "Strategy"], platforms: ["Xbox", "PS5", "Windows"], developer: "Paradox Interactive", desc: """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula faucibus sodales. Sed a urna varius, laoreet tortor ut, luctus dui. Aliquam erat volutpat. Sed auctor tellus sapien, vel ultrices elit vulputate vel. Suspendisse venenatis justo nec lectus laoreet, ac sodales diam tempor. In hac habitasse platea dictumst. Ut nibh lacus, sodales nec sapien sit amet, accumsan blandit justo. Ut diam massa, placerat ac condimentum sed, mollis eu mi. Etiam sit amet vulputate enim. Ut sodales velit sit amet metus finibus viverra. Vivamus pharetra justo at tristique iaculis. Vestibulum tempor gravida bibendum.
 
 Aenean mi massa, molestie at suscipit et, interdum et leo. Suspendisse quam neque, pulvinar in tellus sit amet, varius pulvinar sapien. Cras viverra nec velit imperdiet volutpat. In nulla arcu, dictum et imperdiet in, tempor quis purus. Maecenas sagittis, urna vitae eleifend imperdiet, ante velit interdum ipsum, non vehicula magna massa eu risus. Mauris eu elit turpis. Phasellus ut pellentesque justo, vel venenatis augue. Donec eu ante ultricies leo pretium facilisis eget sit amet eros. Integer suscipit sit amet orci at sagittis. Etiam arcu nunc, sodales laoreet gravida in, ullamcorper at est. Sed porttitor iaculis ipsum vel convallis. Mauris euismod risus et sapien molestie fermentum lobortis quis mauris. Integer et malesuada erat. Nullam vel cursus est, nec porta urna.

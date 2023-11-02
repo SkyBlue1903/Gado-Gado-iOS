@@ -10,6 +10,7 @@
 		571190172AB7E142008939E5 /* ExperienceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571190162AB7E142008939E5 /* ExperienceCardView.swift */; };
 		5711901A2AB8435E008939E5 /* AddExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571190192AB8435E008939E5 /* AddExperienceView.swift */; };
 		5711901C2AB843D5008939E5 /* EditExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5711901B2AB843D5008939E5 /* EditExperienceView.swift */; };
+		5711EC242AEE8BA200F485A2 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5711EC232AEE8BA200F485A2 /* SearchBarView.swift */; };
 		571AED1F2A9CE4E700921EBC /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AED1E2A9CE4E700921EBC /* SignInView.swift */; };
 		5720C1E72A9311A400498B8F /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720C1E62A9311A400498B8F /* Enum.swift */; };
 		5720C1EA2A93190300498B8F /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720C1E92A93190300498B8F /* TextFieldStyle.swift */; };
@@ -22,7 +23,6 @@
 		5735EED32A8CF6FC00E3BB0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5735EED22A8CF6FC00E3BB0C /* Extensions.swift */; };
 		5739F0762AB2099500F5B22A /* TodayArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739F0752AB2099500F5B22A /* TodayArticleView.swift */; };
 		5739F0782AB20C7D00F5B22A /* TodayGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739F0772AB20C7D00F5B22A /* TodayGameView.swift */; };
-		573A489F2AA88FB0007D00A1 /* Focuser in Frameworks */ = {isa = PBXBuildFile; productRef = 573A489E2AA88FB0007D00A1 /* Focuser */; };
 		573E5EE72A9D8655009A27EA /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E5EE62A9D8655009A27EA /* ForgetPasswordView.swift */; };
 		574269B82A94659600752C81 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574269B72A94659600752C81 /* GameDetailView.swift */; };
 		57438F9D2AA4515B00E98BB3 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57438F9C2AA4515B00E98BB3 /* DeleteAccountView.swift */; };
@@ -30,6 +30,7 @@
 		574775B12A9B33E40093B930 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574775B02A9B33E40093B930 /* GameManager.swift */; };
 		574775B32A9B4BE10093B930 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574775B22A9B4BE00093B930 /* AuthManager.swift */; };
 		574775B52A9B6BD50093B930 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574775B42A9B6BD50093B930 /* SignUpView.swift */; };
+		575B4D302AE164C7003E4E1E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575B4D2F2AE164C7003E4E1E /* SearchView.swift */; };
 		576E4D1E2A9867730053493A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576E4D1D2A9867730053493A /* RootView.swift */; };
 		577FB5A02A8E54CF009CA6C1 /* DiscoverCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */; };
 		578838BD2A8C7C0C006A1586 /* Gado_GadoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */; };
@@ -45,6 +46,7 @@
 		578838DB2A8CD9AB006A1586 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DA2A8CD9AB006A1586 /* DiscoverView.swift */; };
 		578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578838DC2A8CD9BE006A1586 /* ProfileView.swift */; };
 		579271742AA32A7100F24217 /* UpdateEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579271732AA32A7100F24217 /* UpdateEmailView.swift */; };
+		5797B7DF2AF3B0DF00A72248 /* UtilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797B7DE2AF3B0DF00A72248 /* UtilityModifier.swift */; };
 		57A2761B2AA7707500ECA989 /* PlatformSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A2761A2AA7707500ECA989 /* PlatformSelectView.swift */; };
 		57A9D6232AA57EE80053C471 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9D6222AA57EE80053C471 /* StorageManager.swift */; };
 		57A9D6262AA57F800053C471 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 57A9D6252AA57F800053C471 /* FirebaseStorage */; };
@@ -61,6 +63,7 @@
 		571190162AB7E142008939E5 /* ExperienceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceCardView.swift; sourceTree = "<group>"; };
 		571190192AB8435E008939E5 /* AddExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExperienceView.swift; sourceTree = "<group>"; };
 		5711901B2AB843D5008939E5 /* EditExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExperienceView.swift; sourceTree = "<group>"; };
+		5711EC232AEE8BA200F485A2 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		571AED1E2A9CE4E700921EBC /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		5720C1E62A9311A400498B8F /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		5720C1E92A93190300498B8F /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 		574775B02A9B33E40093B930 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		574775B22A9B4BE00093B930 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		574775B42A9B6BD50093B930 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		575B4D2F2AE164C7003E4E1E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		576E4D1D2A9867730053493A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		577FB59F2A8E54CF009CA6C1 /* DiscoverCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCarouselView.swift; sourceTree = "<group>"; };
 		578838B92A8C7C0C006A1586 /* Gado Gado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gado Gado.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +94,7 @@
 		578838DA2A8CD9AB006A1586 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		578838DC2A8CD9BE006A1586 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		579271732AA32A7100F24217 /* UpdateEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailView.swift; sourceTree = "<group>"; };
+		5797B7DE2AF3B0DF00A72248 /* UtilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityModifier.swift; sourceTree = "<group>"; };
 		57A276192AA6DBE100ECA989 /* Gado-Gado-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Gado-Gado-Info.plist"; sourceTree = SOURCE_ROOT; };
 		57A2761A2AA7707500ECA989 /* PlatformSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSelectView.swift; sourceTree = "<group>"; };
 		57A9D6222AA57EE80053C471 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -107,7 +112,6 @@
 			files = (
 				578838D72A8CA43B006A1586 /* FirebaseFirestoreSwift in Frameworks */,
 				57DE41FE2A9240B9001344EA /* BottomSheet in Frameworks */,
-				573A489F2AA88FB0007D00A1 /* Focuser in Frameworks */,
 				578838D12A8CA43B006A1586 /* FirebaseAnalyticsSwift in Frameworks */,
 				57A9D6262AA57F800053C471 /* FirebaseStorage in Frameworks */,
 				57345AC42A9A3BAC008F1F00 /* SDWebImageSwiftUI in Frameworks */,
@@ -145,6 +149,7 @@
 				574269B72A94659600752C81 /* GameDetailView.swift */,
 				57DA67522AB29B7C005CF4E5 /* ArticleDetailView.swift */,
 				571190162AB7E142008939E5 /* ExperienceCardView.swift */,
+				5711EC232AEE8BA200F485A2 /* SearchBarView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				5735EED22A8CF6FC00E3BB0C /* Extensions.swift */,
 				5720C1E62A9311A400498B8F /* Enum.swift */,
 				57DE41FF2A926146001344EA /* ImagePicker.swift */,
+				5797B7DE2AF3B0DF00A72248 /* UtilityModifier.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -194,6 +200,7 @@
 				571190182AB842F9008939E5 /* ExperienceView */,
 				578838DA2A8CD9AB006A1586 /* DiscoverView.swift */,
 				57C863872AA9D39500FDA7F7 /* ProfileView */,
+				575B4D2F2AE164C7003E4E1E /* SearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,9 +225,9 @@
 		578838BB2A8C7C0C006A1586 /* Gado Gado */ = {
 			isa = PBXGroup;
 			children = (
-				57A276192AA6DBE100ECA989 /* Gado-Gado-Info.plist */,
 				578838C02A8C7C0E006A1586 /* Assets.xcassets */,
 				578838BC2A8C7C0C006A1586 /* Gado_GadoApp.swift */,
+				57A276192AA6DBE100ECA989 /* Gado-Gado-Info.plist */,
 				57345ABA2A9A1FB9008F1F00 /* GoogleService-Info.plist */,
 				57345ABC2A9A288C008F1F00 /* Manager */,
 				578838C22A8C7C0E006A1586 /* Preview Content */,
@@ -281,7 +288,6 @@
 				57DE41FD2A9240B9001344EA /* BottomSheet */,
 				57345AC32A9A3BAC008F1F00 /* SDWebImageSwiftUI */,
 				57A9D6252AA57F800053C471 /* FirebaseStorage */,
-				573A489E2AA88FB0007D00A1 /* Focuser */,
 			);
 			productName = "Gado Gado";
 			productReference = 578838B92A8C7C0C006A1586 /* Gado Gado.app */;
@@ -316,7 +322,6 @@
 				57FF05192A9210D200F1A6CD /* XCRemoteSwiftPackageReference "VisualEffectView" */,
 				57DE41FC2A9240B9001344EA /* XCRemoteSwiftPackageReference "BottomSheet" */,
 				57345AC22A9A3BAC008F1F00 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				573A489D2AA88FB0007D00A1 /* XCRemoteSwiftPackageReference "swift-focuser" */,
 			);
 			productRefGroup = 578838BA2A8C7C0C006A1586 /* Products */;
 			projectDirPath = "";
@@ -368,14 +373,17 @@
 				57DA67532AB29B7C005CF4E5 /* ArticleDetailView.swift in Sources */,
 				571AED1F2A9CE4E700921EBC /* SignInView.swift in Sources */,
 				578838D92A8CD997006A1586 /* ExperienceView.swift in Sources */,
+				5797B7DF2AF3B0DF00A72248 /* UtilityModifier.swift in Sources */,
 				57A9D6232AA57EE80053C471 /* StorageManager.swift in Sources */,
 				57438F9D2AA4515B00E98BB3 /* DeleteAccountView.swift in Sources */,
 				57E432052AB6F53B0061081F /* DiscoverPlatformView.swift in Sources */,
 				5739F0782AB20C7D00F5B22A /* TodayGameView.swift in Sources */,
 				571190172AB7E142008939E5 /* ExperienceCardView.swift in Sources */,
+				575B4D302AE164C7003E4E1E /* SearchView.swift in Sources */,
 				578838DD2A8CD9BE006A1586 /* ProfileView.swift in Sources */,
 				576E4D1E2A9867730053493A /* RootView.swift in Sources */,
 				574775AF2A9AD9970093B930 /* ShareSheetView.swift in Sources */,
+				5711EC242AEE8BA200F485A2 /* SearchBarView.swift in Sources */,
 				578838BF2A8C7C0C006A1586 /* TodayView.swift in Sources */,
 				5720C1E72A9311A400498B8F /* Enum.swift in Sources */,
 				574775B52A9B6BD50093B930 /* SignUpView.swift in Sources */,
@@ -606,14 +614,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		573A489D2AA88FB0007D00A1 /* XCRemoteSwiftPackageReference "swift-focuser" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/art-technologies/swift-focuser.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
-			};
-		};
 		578838CD2A8CA43B006A1586 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -645,11 +645,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 57345AC22A9A3BAC008F1F00 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		573A489E2AA88FB0007D00A1 /* Focuser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 573A489D2AA88FB0007D00A1 /* XCRemoteSwiftPackageReference "swift-focuser" */;
-			productName = Focuser;
 		};
 		578838CE2A8CA43B006A1586 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

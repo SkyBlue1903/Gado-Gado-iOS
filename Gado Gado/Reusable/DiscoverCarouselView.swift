@@ -29,7 +29,7 @@ struct DiscoverCarouselView: View {
               .clipped()
             ZStack(alignment: .leading) {
               VisualEffect(colorTint: .black, colorTintAlpha: 0.6, blurRadius: 18, scale: 1)
-              NavigationLink(destination: GameDetailView(currentGame: items[each]), label: {
+              NavigationLink(destination: GameDetailView(data: items[each]), label: {
                 HStack {
                   VStack(alignment: .leading, spacing: 5) {
                     Text(items[each].title ?? "")

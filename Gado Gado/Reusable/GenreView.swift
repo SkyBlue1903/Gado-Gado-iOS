@@ -6,13 +6,11 @@
 //
 
 import SwiftUI
-import Focuser
 
 struct GenreView: View {
   
   @Binding var genres: [String]
   @State private var addGenre: String = ""
-  @State var fieldFocus: [Bool] = [false]
   
   var body: some View {
     List {
@@ -38,7 +36,7 @@ struct GenreView: View {
             Text("Clear all")
               .font(.system(size: UIFont.preferredFont(forTextStyle: .subheadline).pointSize, weight: .regular))
           }
-
+          
         }) {
           ForEach(genres, id: \.self) { item in
             Text(item)
